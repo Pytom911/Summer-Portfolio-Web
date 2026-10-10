@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[Your Name] | Web Developer</title>
+<meta name="description" content="[Your Name] is a web developer crafting fast, accessible and quietly delightful websites.">
+<meta name="theme-color" content="#A9DDF5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34' fill='%23FF6B45'/%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='%23FF6B45' stroke-width='6' stroke-dasharray='6 11.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          ocean: '#0E5A8A', deep: '#082F49', lagoon: '#A9DDF5', mist: '#DDF3FC',
+          sand: '#EBDDBA', dune: '#D8C08A', foam: '#FBF8F1', coral: '#FF6B45'
+        },
+        fontFamily: {
+          display: ['Bricolage Grotesque', 'Arial Narrow', 'sans-serif'],
+          sans: ['Instrument Sans', 'system-ui', 'sans-serif']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --ocean:#0E5A8A; --deep:#082F49; --lagoon:#A9DDF5; --mist:#DDF3FC;
+    --sand:#EBDDBA; --dune:#D8C08A; --foam:#FBF8F1; --coral:#FF6B45;
+  }
+  html{scroll-behavior:smooth; scroll-padding-top:6rem; -webkit-text-size-adjust:100%}
+  body{font-family:'Instrument Sans',system-ui,sans-serif; background:var(--foam); color:var(--deep); overflow-x:hidden; -webkit-font-smoothing:antialiased}
+  ::selection{background:var(--coral); color:var(--deep)}
+  :focus-visible{outline:3px solid var(--coral); outline-offset:3px}
+
+  /* ---------- Typography ---------- */
+  .font-display,.display-xl,.display-lg,.display-md,.story{font-family:'Bricolage Grotesque','Arial Narrow',Arial,sans-serif; font-stretch:78%}
+  .display-xl,.display-lg,.display-md{text-wrap:balance}
+  .display-xl{font-size:clamp(4.25rem,14vw,11rem); line-height:.84; letter-spacing:-.045em; font-weight:800}
+  .display-lg{font-size:clamp(2.75rem,8vw,6.5rem); line-height:.92; letter-spacing:-.035em; font-weight:800}
+  .display-md{font-size:clamp(1.75rem,3.6vw,2.75rem); line-height:1.02; letter-spacing:-.025em; font-weight:700}
+  .story{font-size:clamp(1.85rem,4.4vw,3.4rem); line-height:1.14; letter-spacing:-.025em; font-weight:700}
+  .contact-title{font-size:clamp(3.5rem,11.5vw,9.5rem)}
+
+  .skip{position:absolute; left:1rem; top:-4rem; z-index:100; background:var(--deep); color:var(--foam); padding:.75rem 1.25rem; border-radius:999px; transition:top .2s}
+  .skip:focus{top:1rem}
+
+  /* ---------- Textures & backgrounds ---------- */
+  .grain{position:relative}
+  .grain::before{content:""; position:absolute; inset:0; pointer-events:none; opacity:.28; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .42 0 0 0 0 .2 0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+  .hero-bg{background:linear-gradient(180deg,#86CDF0 0%,#A9DDF5 45%,#DDF3FC 100%)}
+  .ocean-bg{background:linear-gradient(180deg,#0E5A8A 0%,#0B4A73 38%,#082F49 100%)}
+  .contact-bg{background:linear-gradient(180deg,#082F49 0%,#0B4468 40%,#2A6C92 68%,#F2A06E 100%)}
+
+  /* ---------- Waves ---------- */
+  .wave-box{position:absolute; left:0; right:0; overflow:hidden; pointer-events:none}
+  .wave{position:absolute; left:0; bottom:0; width:200%; height:100%; max-width:none; animation:drift var(--dur,30s) linear infinite; will-change:transform}
+  .wave.rev{animation-direction:reverse}
+  @keyframes drift{to{transform:translateX(-50%)}}
+
+  /* ---------- Keyframes ---------- */
+  @keyframes rise{from{opacity:0; transform:translateY(.55em) rotate(8deg)}}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-14px) rotate(4deg)}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @keyframes marquee{to{transform:translateX(-50%)}}
+  @keyframes bubble{0%{transform:translateY(0); opacity:0} 10%{opacity:.7} 100%{transform:translateY(-1300px); opacity:0}}
+  .float{animation:bob 7s ease-in-out infinite}
+  .float-slow{animation:bob 11s ease-in-out infinite}
+  .float-rev{animation-direction:reverse}
+  .spin{transform-box:fill-box; transform-origin:center; animation:spin 70s linear infinite}
+  .spin-fast{transform-box:fill-box; transform-origin:center; animation:spin 24s linear infinite}
+  .parallax{translate:calc(var(--mx,0) * var(--d,10) * -1px) calc(var(--my,0) * var(--d,10) * -1px); transition:translate .5s ease-out}
+
+  /* ---------- Reveal on scroll ---------- */
+  .js [data-reveal]{opacity:0; transition:opacity .8s ease, transform .9s cubic-bezier(.2,.8,.2,1), clip-path 1s cubic-bezier(.2,.8,.2,1); transition-delay:var(--d,0s)}
+  .js [data-reveal="rise"]{transform:translateY(28px)}
+  .js [data-reveal="pop"]{transform:scale(.9) rotate(-3deg)}
+  .js [data-reveal="wipe"]{opacity:1; clip-path:inset(0 100% 0 0)}
+  .js [data-reveal].is-in{opacity:1; transform:none; clip-path:inset(-20% -6% -20% -6%)}
+
+  /* ---------- Navbar ---------- */
+  .nav-link{padding:.55rem 1rem; border-radius:999px; transition:background .25s,color .25s}
+  .nav-link:hover{background:var(--mist)}
+  .nav-link[aria-current="location"]{background:var(--deep); color:var(--foam)}
+  #mobileMenu{clip-path:circle(0 at calc(100% - 2.6rem) 2.6rem); visibility:hidden; transition:clip-path .7s cubic-bezier(.7,0,.2,1), visibility 0s .7s}
+  #mobileMenu.open{clip-path:circle(150% at calc(100% - 2.6rem) 2.6rem); visibility:visible; transition:clip-path .7s cubic-bezier(.7,0,.2,1), visibility 0s}
+  #mobileMenu li{opacity:0; translate:0 24px; transition:opacity .4s, translate .5s}
+  #mobileMenu.open li{opacity:1; translate:0 0; transition-delay:calc(.25s + var(--n) * .07s)}
+  .menu-link{display:block; font-family:'Bricolage Grotesque',sans-serif; font-stretch:78%; font-size:clamp(2.75rem,13vw,4.5rem); font-weight:800; letter-spacing:-.035em; line-height:1.05; padding:.15rem 0; transition:color .2s, padding .3s}
+  .menu-link:hover{color:var(--coral); padding-left:.75rem}
+
+  /* ---------- Buttons ---------- */
+  .btn{display:inline-flex; align-items:center; gap:.6rem; border-radius:999px; padding:.95rem 1.5rem; font-weight:600; transition:transform .25s cubic-bezier(.2,.8,.2,1), background .25s, color .25s, box-shadow .25s}
+  .btn:hover{transform:translateY(-3px) rotate(-1deg)}
+  .btn-coral{background:var(--coral); color:var(--deep); box-shadow:0 10px 24px -10px rgba(255,107,69,.85)}
+  .btn-coral:hover{background:#FF8260}
+  .btn-deep{background:var(--deep); color:var(--foam)}
+  .btn-deep:hover{background:var(--ocean)}
+  .btn-ghost{box-shadow:inset 0 0 0 2px var(--deep)}
+  .btn-ghost:hover{background:var(--deep); color:var(--foam)}
+  .btn-line{box-shadow:inset 0 0 0 1.5px rgba(251,248,241,.5); color:var(--foam)}
+  .btn-line:hover{background:var(--foam); color:var(--deep)}
+
+  /* ---------- Hero ---------- */
+  .split .w{display:inline-block; white-space:nowrap}
+  .split .w span{display:inline-block; animation:rise 1s cubic-bezier(.2,.9,.25,1) backwards; animation-delay:calc(var(--i) * 55ms + 200ms); transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+  .split .w span:hover{transform:translateY(-.07em) rotate(-4deg)}
+  .airmail{padding:7px; border-radius:1.25rem; background:repeating-linear-gradient(-45deg,var(--coral) 0 12px,var(--foam) 12px 24px,var(--ocean) 24px 36px,var(--foam) 36px 48px); box-shadow:0 30px 60px -25px rgba(8,47,73,.6)}
+  .postcard{rotate:5deg; transition:rotate .5s cubic-bezier(.2,.8,.2,1), translate .5s cubic-bezier(.2,.8,.2,1)}
+  .postcard:hover{rotate:0deg; translate:0 -8px}
+  .code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.8rem; line-height:1.7}
+
+  /* ---------- About ---------- */
+  .pill{display:inline-block; padding:0 .38em .06em; border-radius:999px; line-height:1.08; margin:0 .04em; white-space:nowrap}
+  .pill-coral{background:var(--coral); rotate:-2deg}
+  .pill-deep{background:var(--deep); color:var(--foam); rotate:1.5deg}
+  .pill-line{box-shadow:inset 0 0 0 .07em var(--deep); rotate:-1deg}
+  .polaroid{background:#fff; padding:14px 14px 18px; border-radius:6px; box-shadow:0 30px 50px -25px rgba(8,47,73,.55); rotate:3deg; transition:rotate .5s cubic-bezier(.2,.8,.2,1)}
+  .polaroid:hover{rotate:0deg}
+  .tide{rotate:-3deg; transition:rotate .5s cubic-bezier(.2,.8,.2,1)}
+  .tide:hover{rotate:0deg}
+
+  /* ---------- Skills ---------- */
+  .bubble{position:absolute; bottom:-30px; width:var(--s); height:var(--s); border-radius:50%; border:1.5px solid rgba(251,248,241,.55); animation:bubble var(--d) linear infinite; animation-delay:var(--delay)}
+  .depth{position:relative; padding-left:2rem; border-left:2px dashed rgba(251,248,241,.3)}
+  .zone{position:relative; padding-bottom:3.75rem}
+  .zone:last-child{padding-bottom:0}
+  .zone::before{content:""; position:absolute; left:calc(-2rem - 8px); top:.55rem; width:14px; height:14px; border-radius:50%; background:var(--coral); box-shadow:0 0 0 5px rgba(255,107,69,.28)}
+  .chip{display:inline-flex; align-items:center; border-radius:999px; padding:.6rem 1.1rem; font-weight:600; font-size:1rem; transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+  .chip:hover{transform:translateY(-5px) rotate(-3deg)}
+  .chip-lg{font-size:clamp(1.1rem,2.2vw,1.6rem); padding:.75rem 1.5rem; font-family:'Bricolage Grotesque',sans-serif; font-stretch:85%; font-weight:700; letter-spacing:-.015em}
+  .chip-a{background:var(--coral); color:var(--deep)}
+  .chip-b{background:var(--sand); color:var(--deep)}
+  .chip-c{background:rgba(251,248,241,.08); color:var(--foam); box-shadow:inset 0 0 0 1.5px rgba(251,248,241,.45)}
+  .marquee{overflow:hidden}
+  .track{display:flex; align-items:center; width:max-content; animation:marquee 46s linear infinite}
+  .track.rev{animation-direction:reverse; animation-duration:54s}
+  .marquee:hover .track{animation-play-state:paused}
+  .track>*{flex:none; margin-right:2rem}
+  .track span{font-family:'Bricolage Grotesque',sans-serif; font-stretch:78%; font-size:clamp(3rem,7.5vw,6rem); font-weight:800; letter-spacing:-.03em; line-height:1.1; white-space:nowrap; color:transparent; -webkit-text-stroke:1.5px rgba(251,248,241,.6)}
+  .track span.solid{color:var(--coral); -webkit-text-stroke:0}
+
+  /* ---------- Projects ---------- */
+  .cover{transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+  .cover svg.art{transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+  .project a:hover .cover,.project a:focus-visible .cover{transform:translateY(-6px) rotate(-.7deg)}
+  .project a:hover .cover svg.art,.project a:focus-visible .cover svg.art{transform:scale(1.05)}
+  .view-badge{position:absolute; right:1.1rem; top:1.1rem; width:5.25rem; height:5.25rem; border-radius:50%; background:var(--coral); color:var(--deep); display:grid; place-items:center; font-weight:700; scale:0; rotate:-40deg; transition:scale .4s cubic-bezier(.3,1.6,.5,1), rotate .4s}
+  .project a:hover .view-badge,.project a:focus-visible .view-badge{scale:1; rotate:0deg}
+  .tags li{border:1.5px solid rgba(8,47,73,.3); border-radius:999px; padding:.2rem .8rem; font-size:.875rem; font-weight:500}
+  .project h3 a:hover{text-decoration:underline}
+  .vertical{writing-mode:vertical-rl; transform:rotate(180deg)}
+
+  /* ---------- Journey ---------- */
+  .journey-wrap{position:relative; --p:0}
+  .journey-wrap::before{content:""; position:absolute; top:0; bottom:0; left:1.5rem; width:28px; transform:translateX(-50%);
+    background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='120' viewBox='0 0 28 120'><path d='M14 0 C26 15 26 45 14 60 S2 105 14 120' fill='none' stroke='%230E5A8A' stroke-width='3' stroke-linecap='round'/></svg>") repeat-y center top}
+  .j-item{position:relative; padding:0 0 3.5rem 4rem}
+  .j-item:last-child{padding-bottom:0}
+  .j-dot{position:absolute; left:1.5rem; top:.35rem; width:2.9rem; height:2.9rem; border-radius:50%; background:var(--coral); color:var(--deep); display:grid; place-items:center; transform:translateX(-50%); box-shadow:0 0 0 7px var(--mist)}
+  .j-year{font-family:'Bricolage Grotesque',sans-serif; font-stretch:78%; font-weight:800; font-size:clamp(2.75rem,7vw,5rem); line-height:.95; letter-spacing:-.03em; color:transparent; -webkit-text-stroke:2px var(--ocean)}
+  .boat{position:absolute; left:1.5rem; top:calc(var(--p) * 100%); width:2.75rem; translate:-50% -50%; z-index:6; transition:top .25s ease-out; filter:drop-shadow(0 6px 6px rgba(8,47,73,.3))}
+  @media (min-width:768px){
+    .journey-wrap::before{left:50%}
+    .boat{left:50%}
+    .j-item{display:grid; grid-template-columns:1fr 1fr; padding:0 0 5rem}
+    .j-item:last-child{padding-bottom:0}
+    .j-dot{left:50%}
+    .j-item:nth-child(odd) .j-card{grid-column:1; padding-right:4.25rem; text-align:right}
+    .j-item:nth-child(even) .j-card{grid-column:2; padding-left:4.25rem}
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .sun-set{background:radial-gradient(circle at 50% 38%,#FFD28C 0%,#FF9A5C 46%,#FF6B45 100%); box-shadow:0 0 120px 40px rgba(255,150,90,.45)}
+  #toast{position:fixed; left:50%; bottom:1.5rem; z-index:90; translate:-50% 150%; background:var(--deep); color:var(--foam); padding:.8rem 1.4rem; border-radius:999px; font-weight:600; box-shadow:0 14px 30px -10px rgba(8,47,73,.6); transition:translate .45s cubic-bezier(.3,1.4,.5,1)}
+  #toast.show{translate:-50% 0}
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none !important; transition:none !important}
+    .js [data-reveal]{opacity:1 !important; transform:none !important; clip-path:none !important}
+    .parallax{translate:none}
+    .bubble{display:none}
+  }
+</style>
+</head>
+
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- Reusable SVG stickers -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-starfish" viewBox="0 0 100 100">
+      <polygon points="50,8 61.8,35.8 91.8,38.4 69,58.2 75.9,87.6 50,72 24.1,87.6 31,58.2 8.2,38.4 38.2,35.8" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round"/>
+      <g fill="#082F49" opacity=".3">
+        <circle cx="50" cy="30" r="2.4"/><circle cx="50" cy="19" r="2.4"/>
+        <circle cx="70.9" cy="45.2" r="2.4"/><circle cx="81.4" cy="41.8" r="2.4"/>
+        <circle cx="62.9" cy="69.8" r="2.4"/><circle cx="69.4" cy="78.7" r="2.4"/>
+        <circle cx="37.1" cy="69.8" r="2.4"/><circle cx="30.6" cy="78.7" r="2.4"/>
+        <circle cx="29.1" cy="45.2" r="2.4"/><circle cx="18.6" cy="41.8" r="2.4"/>
+      </g>
+    </symbol>
+    <symbol id="i-hibiscus" viewBox="0 0 100 100">
+      <g fill="currentColor" stroke="#FBF8F1" stroke-width="2">
+        <ellipse cx="50" cy="26" rx="15" ry="24"/>
+        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(72 50 50)"/>
+        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(144 50 50)"/>
+        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(216 50 50)"/>
+        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(288 50 50)"/>
+      </g>
+      <circle cx="50" cy="50" r="9" fill="#FFD98E"/><circle cx="50" cy="50" r="4" fill="#082F49" opacity=".35"/>
+    </symbol>
+    <symbol id="i-shell" viewBox="0 0 100 100">
+      <path d="M50 92 L8 44 C8 14 92 14 92 44 Z" fill="currentColor"/>
+      <g stroke="#082F49" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" fill="none">
+        <path d="M50 90 L22 33"/><path d="M50 90 L36 24"/><path d="M50 90 L50 21"/><path d="M50 90 L64 24"/><path d="M50 90 L78 33"/>
+      </g>
+      <rect x="38" y="88" width="24" height="8" rx="4" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-sparkle" viewBox="0 0 100 100">
+      <path d="M50 4 Q54 46 96 50 Q54 54 50 96 Q46 54 4 50 Q46 46 50 4Z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-sun" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="21" fill="currentColor"/>
+      <circle cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="5 9.14" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-cloud" viewBox="0 0 112 88">
+      <path d="M22 76 Q4 76 4 60 Q4 46 20 44 Q22 24 44 24 Q58 24 64 36 Q70 30 80 30 Q96 30 96 48 Q108 50 108 62 Q108 76 94 76 Z" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="fixed inset-x-0 top-0 z-50 px-3 sm:px-6 pt-3">
+  <nav class="mx-auto max-w-6xl flex items-center justify-between rounded-full bg-foam/85 backdrop-blur-md ring-1 ring-deep/10 shadow-[0_10px_30px_-14px_rgba(8,47,73,.45)] p-2" aria-label="Primary">
+    <a href="#hero" class="group flex items-center gap-3" aria-label="[Your Name], back to top">
+      <!-- GANTI: monogram -->
+      <span class="grid place-items-center w-11 h-11 rounded-full bg-coral text-deep font-display font-extrabold text-lg transition-transform duration-300 group-hover:-rotate-12">YN</span>
+      <span class="hidden sm:block font-display font-bold text-xl tracking-tight pr-2">[Your Name]</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-1 text-[15px] font-medium">
+      <li><a data-nav class="nav-link" href="#about">About</a></li>
+      <li><a data-nav class="nav-link" href="#skills">Skills</a></li>
+      <li><a data-nav class="nav-link" href="#work">Work</a></li>
+      <li><a data-nav class="nav-link" href="#journey">Journey</a></li>
+    </ul>
+    <div class="flex items-center gap-2">
+      <a href="#contact" class="btn btn-coral hidden sm:inline-flex !py-3 !px-5">Say hello</a>
+      <button id="menuBtn" type="button" class="md:hidden grid place-items-center w-11 h-11 rounded-full bg-deep text-foam" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+        <i class="bi bi-list text-2xl" aria-hidden="true"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" class="fixed inset-0 z-40 bg-deep text-foam md:hidden overflow-y-auto">
+  <div class="relative min-h-full flex flex-col justify-between px-7 pt-32 pb-10 overflow-hidden">
+    <svg class="absolute -right-24 bottom-20 w-72 h-72 text-coral spin pointer-events-none" aria-hidden="true"><use href="#i-sun"/></svg>
+    <nav aria-label="Mobile" class="relative">
+      <ul>
+        <li style="--n:0"><a data-nav class="menu-link" href="#about">About</a></li>
+        <li style="--n:1"><a data-nav class="menu-link" href="#skills">Skills</a></li>
+        <li style="--n:2"><a data-nav class="menu-link" href="#work">Work</a></li>
+        <li style="--n:3"><a data-nav class="menu-link" href="#journey">Journey</a></li>
+        <li style="--n:4"><a data-nav class="menu-link text-coral" href="#contact">Say hello</a></li>
+      </ul>
+    </nav>
+    <p class="relative mt-12 text-foam/80">hello@example.com</p>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ===================== HERO ===================== -->
+<section id="hero" class="hero-bg relative isolate overflow-hidden pt-32 sm:pt-36 pb-60 sm:pb-72">
+  <!-- Sun -->
+  <div class="parallax absolute -right-[22vw] top-24 sm:-right-[3vw] sm:top-8 w-[min(98vw,780px)] aspect-square pointer-events-none" style="--d:12" aria-hidden="true">
+    <svg viewBox="0 0 400 400" class="w-full h-full">
+      <g class="spin"><circle cx="200" cy="200" r="168" fill="none" stroke="#FF6B45" stroke-width="34" stroke-dasharray="7 36.98" stroke-linecap="round"/></g>
+      <circle cx="200" cy="200" r="128" fill="#FF6B45"/>
+      <circle cx="200" cy="200" r="100" fill="#FF8559"/>
+      <circle cx="200" cy="200" r="148" fill="none" stroke="#FBF8F1" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round" opacity=".75"/>
+    </svg>
+  </div>
+  <!-- Clouds -->
+  <div class="parallax absolute left-[4%] top-[17%] pointer-events-none" style="--d:22" aria-hidden="true">
+    <svg class="float-slow w-24 h-[4.7rem] sm:w-36 sm:h-28 text-foam/80"><use href="#i-cloud"/></svg>
+  </div>
+  <div class="parallax absolute right-[38%] bottom-[34%] pointer-events-none hidden md:block" style="--d:30" aria-hidden="true">
+    <svg class="float-slow float-rev w-24 h-[4.7rem] text-foam/70"><use href="#i-cloud"/></svg>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="relative">
+      <h1 class="display-xl" aria-label="Crafting Digital Waves.">
+        <span class="line block split">Crafting</span>
+        <span class="line block split pl-[10vw] lg:pl-[16%]">Digital</span>
+        <span class="line block pl-[3vw]"><span class="split">Waves.</span><svg class="parallax float inline-block w-[.72em] h-[.72em] ml-[.12em] align-baseline text-coral" style="--d:26" aria-hidden="true"><use href="#i-hibiscus"/></svg></span>
+      </h1>
+      <!-- Rotating sticker -->
+      <div class="parallax absolute right-[2%] top-[1%] sm:right-[10%] sm:top-[4%]" style="--d:18" aria-hidden="true">
+        <svg viewBox="0 0 120 120" class="spin-fast w-24 h-24 sm:w-32 sm:h-32">
+          <defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
+          <circle cx="60" cy="60" r="58" fill="#082F49"/>
+          <text font-family="Instrument Sans, sans-serif" font-size="11.5" font-weight="600" fill="#FBF8F1" letter-spacing="1.6"><textPath href="#circ">open for projects ✺ say hello ✺ open for projects ✺ </textPath></text>
+          <circle cx="60" cy="60" r="12" fill="#FF6B45"/>
+        </svg>
+      </div>
+      <svg class="parallax float absolute -left-1 top-[-2.5rem] w-14 h-14 sm:w-20 sm:h-20 text-coral" style="--d:34" aria-hidden="true"><use href="#i-starfish"/></svg>
+    </div>
+
+    <div class="mt-10 lg:mt-4 grid lg:grid-cols-12 gap-14 items-end">
+      <div class="lg:col-span-5">
+        <!-- GANTI: nama & deskripsi singkat -->
+        <p class="text-lg sm:text-xl leading-relaxed max-w-md" data-reveal="rise" style="--d:.5s">
+          I'm [Your Name], a web developer who builds fast, accessible and quietly delightful websites, from the first sketch in the sand to the deploy at high tide.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3" data-reveal="rise" style="--d:.65s">
+          <a href="#work" class="btn btn-coral"><i class="bi bi-water" aria-hidden="true"></i>See selected work</a>
+          <a href="#contact" class="btn btn-ghost"><i class="bi bi-envelope" aria-hidden="true"></i>Get in touch</a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 lg:col-start-8 lg:translate-y-20 max-w-md lg:max-w-none">
+        <div class="airmail postcard" data-reveal="pop" style="--d:.8s">
+          <div class="rounded-[.8rem] bg-foam overflow-hidden">
+            <div class="grid grid-cols-[1.35fr_1fr] gap-4 p-4 sm:p-5">
+              <div class="code rounded-xl bg-deep p-4 text-lagoon overflow-hidden">
+                <span class="opacity-70">// today's forecast</span><br>
+                <span class="text-coral">const</span> vibe = <span class="text-sand">"sunny"</span>;<br>
+                <span class="text-coral">await</span> ship({<br>
+                &nbsp;&nbsp;site: <span class="text-sand">"yours"</span>,<br>
+                &nbsp;&nbsp;speed: <span class="text-sand">"fast"</span>,<br>
+                });
+              </div>
+              <div class="flex flex-col justify-between gap-4">
+                <div class="self-end rounded-md border-2 border-dashed border-ocean/50 p-1.5 text-coral">
+                  <svg class="w-10 h-10" aria-hidden="true"><use href="#i-sun"/></svg>
+                </div>
+                <div class="text-sm leading-6">
+                  <p class="border-b border-dashed border-deep/30 pb-1">To: your next big idea</p>
+                  <p class="border-b border-dashed border-deep/30 pb-1 mt-2">From: [Your Name]</p>
+                </div>
+              </div>
+            </div>
+            <p class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight bg-lagoon px-5 py-3">Greetings from localhost</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero waves -->
+  <div class="absolute inset-x-0 bottom-0 h-[210px] sm:h-[260px] z-[1] pointer-events-none" aria-hidden="true">
+    <div class="wave-box bottom-0" style="height:100%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#6EC1E8" data-amp="14" data-wl="720" data-base="40" data-speed="46"></svg></div>
+    <div class="wave-box bottom-0" style="height:80%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#1E7FB8" data-amp="12" data-wl="480" data-base="36" data-phase="1" data-speed="38"></svg></div>
+    <div class="wave-box bottom-0" style="height:58%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="10" data-wl="720" data-base="30" data-phase="2" data-speed="32"></svg></div>
+    <div class="wave-box bottom-0" style="height:42%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#EBDDBA" data-amp="8" data-wl="360" data-base="28" data-phase="3" data-speed="40"></svg></div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="grain relative bg-sand pt-20 sm:pt-28 pb-28 lg:pb-40">
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-16 lg:gap-10 items-start">
+    <div class="lg:col-span-7">
+      <h2 class="sr-only">About me</h2>
+      <!-- GANTI: nama, kota, dan cerita singkat -->
+      <p class="story" data-reveal="rise">
+        Hi, I'm [Your Name], a <span class="pill pill-coral">web developer</span> from [City, Country]. Raised near the sea and still happiest when things run <span class="pill pill-line">calm and fast</span>. I turn rough ideas into <span class="pill pill-deep">polished interfaces</span> that are easy to use, easy to maintain and kind to every screen.
+      </p>
+      <p class="mt-10 max-w-lg text-lg leading-relaxed" data-reveal="rise" style="--d:.15s">
+        My days follow the tide: sketch in the morning, build through the afternoon, ship before sunset. I care about clean code, readable design and pages that load before your coffee cools. [Replace this paragraph with your own story: where you started, what you love, what you're chasing next.]
+      </p>
+    </div>
+
+    <div class="lg:col-span-5 relative mx-auto w-full max-w-sm lg:max-w-none pb-8">
+      <figure class="polaroid relative w-[88%] lg:ml-auto" data-reveal="pop">
+        <!-- GANTI: ganti blok placeholder ini dengan <img src="foto-kamu.jpg" alt="Portrait of [Your Name]" class="aspect-[4/5] w-full object-cover rounded"> -->
+        <div class="aspect-[4/5] rounded overflow-hidden relative bg-gradient-to-b from-lagoon to-mist grid place-items-center">
+          <svg class="w-40 h-40 text-coral absolute -top-8 -right-8 spin" aria-hidden="true"><use href="#i-sun"/></svg>
+          <svg class="w-24 h-24 text-ocean/70 absolute bottom-6 left-6" aria-hidden="true"><use href="#i-shell"/></svg>
+          <p class="relative font-display text-2xl font-bold text-ocean text-center leading-tight">[ your photo<br>goes here ]</p>
+        </div>
+        <figcaption class="pt-4 pb-1 font-display text-2xl font-bold tracking-tight">[Your Name], mid-deploy</figcaption>
+      </figure>
+      <svg class="float absolute -top-6 right-0 w-16 h-16 text-coral" aria-hidden="true"><use href="#i-starfish"/></svg>
+
+      <aside class="tide relative -mt-14 sm:-mt-16 w-[88%] rounded-2xl bg-deep text-foam p-6 shadow-[0_30px_50px_-25px_rgba(8,47,73,.7)]" data-reveal="rise" style="--d:.2s" aria-label="A typical day">
+        <h3 class="display-md">Tide table</h3>
+        <dl class="mt-4 text-[15px] leading-snug">
+          <div class="flex gap-4 justify-between py-2.5 border-b border-dotted border-foam/30"><dt class="font-display text-xl font-bold text-coral">Morning</dt><dd class="text-right text-foam/90">Sketching, planning, strong coffee</dd></div>
+          <div class="flex gap-4 justify-between py-2.5 border-b border-dotted border-foam/30"><dt class="font-display text-xl font-bold text-coral">Afternoon</dt><dd class="text-right text-foam/90">Building, testing, breaking, fixing</dd></div>
+          <div class="flex gap-4 justify-between py-2.5"><dt class="font-display text-xl font-bold text-coral">Sunset</dt><dd class="text-right text-foam/90">Shipping, then straight into the sea</dd></div>
+        </dl>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="ocean-bg relative overflow-hidden text-foam pt-44 sm:pt-52 pb-56 sm:pb-64">
+  <div class="wave-box top-0 h-20 sm:h-28 scale-y-[-1] z-[1]" aria-hidden="true"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#EBDDBA" data-amp="12" data-wl="720" data-base="70" data-speed="44"></svg></div>
+
+  <!-- Bubbles -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <span class="bubble" style="left:6%;--s:14px;--d:17s;--delay:-3s"></span>
+    <span class="bubble" style="left:18%;--s:26px;--d:23s;--delay:-11s"></span>
+    <span class="bubble" style="left:33%;--s:10px;--d:15s;--delay:-7s"></span>
+    <span class="bubble" style="left:49%;--s:20px;--d:21s;--delay:-14s"></span>
+    <span class="bubble" style="left:64%;--s:12px;--d:18s;--delay:-2s"></span>
+    <span class="bubble" style="left:78%;--s:30px;--d:26s;--delay:-9s"></span>
+    <span class="bubble" style="left:91%;--s:16px;--d:19s;--delay:-16s"></span>
+  </div>
+
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-14 lg:gap-10">
+    <div class="lg:col-span-4 lg:sticky lg:top-32 self-start">
+      <h2 class="display-lg" data-reveal="wipe">Tools for deep water.</h2>
+      <p class="mt-6 max-w-sm text-lg text-foam/85" data-reveal="rise" style="--d:.2s">I'm comfortable near the surface and keep swimming deeper. Here's my kit, sorted by how far down I've taken each tool.</p>
+    </div>
+
+    <!-- GANTI: daftar teknologi sesuai kemampuanmu -->
+    <div class="lg:col-span-8 depth">
+      <div class="zone" data-reveal="rise">
+        <h3 class="display-md">Shallows <span class="font-sans text-base font-medium text-foam/70 tracking-normal ml-2">0 to 5 m, my daily kit</span></h3>
+        <ul class="flex flex-wrap gap-3 mt-5">
+          <li class="chip chip-lg chip-a">HTML &amp; CSS</li>
+          <li class="chip chip-lg chip-b">JavaScript</li>
+          <li class="chip chip-lg chip-c">Tailwind CSS</li>
+          <li class="chip chip-lg chip-a">React</li>
+          <li class="chip chip-lg chip-c">Git &amp; GitHub</li>
+        </ul>
+      </div>
+      <div class="zone" data-reveal="rise">
+        <h3 class="display-md">Reef <span class="font-sans text-base font-medium text-foam/70 tracking-normal ml-2">5 to 20 m, confident and productive</span></h3>
+        <ul class="flex flex-wrap gap-3 mt-5">
+          <li class="chip chip-b">TypeScript</li>
+          <li class="chip chip-c">Node.js</li>
+          <li class="chip chip-a">Next.js</li>
+          <li class="chip chip-c">PostgreSQL</li>
+          <li class="chip chip-b">REST &amp; GraphQL</li>
+          <li class="chip chip-c">Figma</li>
+          <li class="chip chip-a">Accessibility</li>
+        </ul>
+      </div>
+      <div class="zone" data-reveal="rise">
+        <h3 class="display-md">Open water <span class="font-sans text-base font-medium text-foam/70 tracking-normal ml-2">20 m and down, still exploring</span></h3>
+        <ul class="flex flex-wrap gap-3 mt-5">
+          <li class="chip chip-c">Three.js</li>
+          <li class="chip chip-c">WebAssembly</li>
+          <li class="chip chip-c">Rust</li>
+          <li class="chip chip-c">AI tooling</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticker -->
+  <div class="relative z-10 mt-24 space-y-3 -rotate-2 scale-105" aria-hidden="true">
+    <div class="marquee"><div class="track" data-marquee>
+      <span>HTML</span><svg class="w-8 h-8 text-coral"><use href="#i-sparkle"/></svg><span class="solid">JavaScript</span><svg class="w-8 h-8 text-coral"><use href="#i-sparkle"/></svg><span>React</span><svg class="w-8 h-8 text-coral"><use href="#i-sparkle"/></svg><span class="solid">Node.js</span><svg class="w-8 h-8 text-coral"><use href="#i-sparkle"/></svg><span>Tailwind</span><svg class="w-8 h-8 text-coral"><use href="#i-sparkle"/></svg>
+    </div></div>
+    <div class="marquee"><div class="track rev" data-marquee>
+      <span class="solid">Accessibility</span><svg class="w-8 h-8 text-sand"><use href="#i-starfish"/></svg><span>Performance</span><svg class="w-8 h-8 text-sand"><use href="#i-starfish"/></svg><span class="solid">APIs</span><svg class="w-8 h-8 text-sand"><use href="#i-starfish"/></svg><span>Design systems</span><svg class="w-8 h-8 text-sand"><use href="#i-starfish"/></svg><span class="solid">Git</span><svg class="w-8 h-8 text-sand"><use href="#i-starfish"/></svg>
+    </div></div>
+  </div>
+
+  <div class="wave-box bottom-0 h-20 sm:h-28 z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="12" data-wl="720" data-base="70" data-speed="40"></svg></div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="work" class="relative bg-foam pt-12 pb-32 sm:pb-44">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-6 items-end">
+      <h2 class="display-lg lg:col-span-8" data-reveal="wipe">Selected work,<br>fresh from the shore.</h2>
+      <p class="lg:col-span-4 text-lg max-w-sm lg:justify-self-end" data-reveal="rise">A few projects I'm proud of, each with its own tide and its own story.</p>
+    </div>
+
+    <!-- GANTI: semua project di bawah ini adalah placeholder (judul, deskripsi, tag, link) -->
+    <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-24 items-start">
+
+      <!-- Project 1: wide ocean window -->
+      <article class="project lg:col-span-8" data-reveal="rise">
+        <a href="https://example.com/shoreline" class="block rounded-[2.75rem]">
+          <div class="cover relative aspect-[4/3.4] sm:aspect-[16/11] rounded-[2rem] sm:rounded-[2.75rem] overflow-hidden bg-deep">
+            <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E5A8A"/><stop offset="1" stop-color="#082F49"/></linearGradient></defs>
+              <rect width="800" height="560" fill="url(#g1)"/>
+              <circle cx="660" cy="110" r="120" fill="#FF6B45"/>
+              <rect x="60" y="40" width="540" height="330" rx="22" fill="#FBF8F1"/>
+              <rect x="60" y="40" width="540" height="44" rx="22" fill="#DDF3FC"/><rect x="60" y="64" width="540" height="20" fill="#DDF3FC"/>
+              <circle cx="88" cy="62" r="6" fill="#FF6B45"/><circle cx="108" cy="62" r="6" fill="#D8C08A"/><circle cx="128" cy="62" r="6" fill="#0E5A8A"/>
+              <rect x="80" y="104" width="110" height="246" rx="14" fill="#EBDDBA"/>
+              <rect x="96" y="124" width="70" height="10" rx="5" fill="#082F49" opacity=".7"/><rect x="96" y="150" width="54" height="10" rx="5" fill="#082F49" opacity=".35"/><rect x="96" y="176" width="62" height="10" rx="5" fill="#082F49" opacity=".35"/>
+              <path d="M215 300 C260 210 305 330 355 245 S445 160 575 225" fill="none" stroke="#0E5A8A" stroke-width="7" stroke-linecap="round"/>
+              <path d="M215 330 C270 290 320 350 380 305 S470 270 575 290" fill="none" stroke="#FF6B45" stroke-width="7" stroke-linecap="round"/>
+              <rect x="215" y="120" width="170" height="14" rx="7" fill="#082F49" opacity=".75"/><rect x="215" y="146" width="110" height="10" rx="5" fill="#082F49" opacity=".3"/>
+              <rect x="500" y="250" width="210" height="130" rx="20" fill="#FF6B45"/>
+              <rect x="522" y="274" width="110" height="12" rx="6" fill="#082F49" opacity=".8"/><rect x="522" y="300" width="150" height="10" rx="5" fill="#082F49" opacity=".35"/>
+              <rect x="522" y="326" width="60" height="26" rx="13" fill="#082F49"/>
+            </svg>
+            <h3 class="display-lg text-foam absolute left-6 bottom-5 sm:left-10 sm:bottom-7 ![font-size:clamp(2.5rem,6.2vw,5rem)]">Shoreline</h3>
+            <span class="view-badge" aria-hidden="true">View</span>
+          </div>
+          <div class="mt-5 flex flex-wrap items-start justify-between gap-4">
+            <p class="max-w-md text-lg leading-snug">A booking and analytics dashboard for a surf school, cutting weekly admin from hours to minutes.</p>
+            <ul class="tags flex flex-wrap gap-2"><li>React</li><li>Node.js</li><li>PostgreSQL</li></ul>
+          </div>
+        </a>
+      </article>
+
+      <!-- Project 2: arch / beach hut -->
+      <article class="project lg:col-span-4 lg:mt-28" data-reveal="rise" style="--d:.1s">
+        <a href="https://example.com/tidepool" class="block rounded-[2rem]">
+          <div class="cover relative aspect-[3/4.1] rounded-t-[999px] rounded-b-[2rem] overflow-hidden bg-coral">
+            <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 400 546" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="400" height="546" fill="#FF6B45"/>
+              <circle cx="200" cy="140" r="170" fill="#FF8559"/>
+              <rect x="95" y="110" width="210" height="400" rx="36" fill="#082F49"/>
+              <rect x="105" y="120" width="190" height="380" rx="28" fill="#FBF8F1"/>
+              <rect x="170" y="130" width="60" height="10" rx="5" fill="#082F49"/>
+              <circle cx="200" cy="208" r="36" fill="#FF6B45"/>
+              <path d="M105 262 C140 244 160 280 200 262 S260 244 295 262 V290 H105Z" fill="#A9DDF5"/>
+              <rect x="125" y="310" width="150" height="34" rx="17" fill="#EBDDBA"/><rect x="125" y="354" width="150" height="34" rx="17" fill="#EBDDBA"/><rect x="125" y="398" width="150" height="34" rx="17" fill="#EBDDBA"/>
+              <rect x="140" y="322" width="70" height="10" rx="5" fill="#082F49" opacity=".6"/><rect x="140" y="366" width="52" height="10" rx="5" fill="#082F49" opacity=".6"/><rect x="140" y="410" width="80" height="10" rx="5" fill="#082F49" opacity=".6"/>
+              <rect x="125" y="448" width="150" height="34" rx="17" fill="#0E5A8A"/>
+            </svg>
+            <span class="view-badge !top-auto !bottom-5" aria-hidden="true">View</span>
+          </div>
+          <div class="relative mt-5">
+            <span class="absolute -top-14 right-2 rotate-6 bg-sand text-deep px-3 py-1 rounded-full text-sm font-semibold shadow-md">Mobile app</span>
+            <h3 class="display-md">Tidepool</h3>
+            <p class="mt-2 leading-snug">A mobile-first ordering app for a beachfront café, built to stay fast on patchy beach Wi-Fi.</p>
+            <ul class="tags flex flex-wrap gap-2 mt-4"><li>Next.js</li><li>Stripe</li><li>PWA</li></ul>
+          </div>
+        </a>
+      </article>
+
+      <!-- Project 3: sand shop with vertical title -->
+      <article class="project lg:col-span-5 lg:col-start-2" data-reveal="rise">
+        <a href="https://example.com/driftwood" class="flex gap-4 sm:gap-6">
+          <h3 class="vertical display-lg shrink-0 ![font-size:clamp(2.5rem,6vw,4.75rem)] self-stretch whitespace-nowrap">Driftwood Studio</h3>
+          <div class="min-w-0 flex-1">
+            <div class="cover relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-sand ring-2 ring-deep">
+              <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="400" height="500" fill="#EBDDBA"/>
+                <rect x="30" y="40" width="160" height="200" rx="20" fill="#FBF8F1"/><rect x="210" y="70" width="160" height="200" rx="20" fill="#FF6B45"/>
+                <rect x="30" y="270" width="160" height="200" rx="20" fill="#A9DDF5"/><rect x="210" y="300" width="160" height="170" rx="20" fill="#0E5A8A"/>
+                <g color="#0E5A8A"><svg x="55" y="70" width="110" height="110" class="text-ocean"><use href="#i-shell" style="color:#0E5A8A"/></svg></g>
+                <svg x="235" y="100" width="110" height="110"><use href="#i-starfish" style="color:#FBF8F1"/></svg>
+                <svg x="55" y="300" width="110" height="110"><use href="#i-hibiscus" style="color:#FF6B45"/></svg>
+                <svg x="235" y="325" width="110" height="110"><use href="#i-sparkle" style="color:#EBDDBA"/></svg>
+                <rect x="50" y="205" width="70" height="22" rx="11" fill="#082F49"/><rect x="230" y="235" width="70" height="22" rx="11" fill="#082F49"/>
+                <rect x="50" y="435" width="70" height="22" rx="11" fill="#082F49"/><rect x="230" y="435" width="70" height="22" rx="11" fill="#FBF8F1"/>
+              </svg>
+              <span class="view-badge" aria-hidden="true">View</span>
+            </div>
+            <p class="mt-5 leading-snug">A portfolio and online shop for a ceramics studio, designed around slow, tactile photography.</p>
+            <ul class="tags flex flex-wrap gap-2 mt-4"><li>Shopify</li><li>Tailwind</li><li>Figma</li></ul>
+          </div>
+        </a>
+      </article>
+
+      <!-- Project 4: porthole -->
+      <article class="project lg:col-span-6 lg:col-start-7 lg:mt-24" data-reveal="rise" style="--d:.1s">
+        <a href="https://example.com/low-tide" class="block rounded-[2rem]">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-8">
+            <div class="cover relative w-[min(100%,20rem)] aspect-square rounded-full overflow-hidden border-[12px] border-deep shrink-0 shadow-[0_30px_50px_-25px_rgba(8,47,73,.6)]">
+              <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 400 400" aria-hidden="true">
+                <rect width="400" height="400" fill="#A9DDF5"/>
+                <circle cx="200" cy="120" r="46" fill="#FF6B45"/>
+                <path d="M0 230 C50 200 100 260 150 230 S250 200 300 230 S380 260 400 240 V400 H0Z" fill="#6EC1E8"/>
+                <path d="M0 270 C60 240 110 300 170 270 S280 240 340 270 S390 290 400 280 V400 H0Z" fill="#1E7FB8"/>
+                <path d="M0 320 C70 295 120 345 190 320 S300 295 360 320 L400 330 V400 H0Z" fill="#082F49"/>
+                <path d="M30 360 C90 330 140 372 200 346 S310 330 370 352" fill="none" stroke="#FBF8F1" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="200" cy="346" r="8" fill="#FF6B45" stroke="#FBF8F1" stroke-width="3"/>
+                <circle cx="200" cy="200" r="190" fill="none" stroke="#FBF8F1" stroke-width="4" opacity=".6"/>
+              </svg>
+              <span class="view-badge !right-4 !top-4 !w-20 !h-20" aria-hidden="true">View</span>
+            </div>
+            <div>
+              <h3 class="display-lg ![font-size:clamp(2.5rem,5vw,4.25rem)]">Low Tide</h3>
+              <p class="mt-3 leading-snug max-w-xs">A tide and weather companion that keeps working offline, because the signal always drops at the best spots.</p>
+              <ul class="tags flex flex-wrap gap-2 mt-4"><li>TypeScript</li><li>PWA</li><li>Open-Meteo</li></ul>
+            </div>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== JOURNEY ===================== -->
+<section id="journey" class="relative bg-mist overflow-hidden pt-40 sm:pt-48 pb-44 sm:pb-52">
+  <div class="wave-box top-0 h-20 sm:h-28 scale-y-[-1] z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="12" data-wl="720" data-base="70" data-speed="42"></svg></div>
+
+  <div class="relative z-10 mx-auto max-w-5xl px-5 sm:px-8">
+    <h2 class="display-lg" data-reveal="wipe">How I got here.</h2>
+    <p class="mt-4 max-w-md text-lg" data-reveal="rise">A few stops along the shoreline.</p>
+
+    <!-- GANTI: tahun, posisi, perusahaan, dan deskripsi -->
+    <div class="journey-wrap mt-20" id="journeyWrap">
+      <svg id="boat" class="boat" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 4 L20 26 L6 26Z" fill="#FF6B45"/><path d="M22 10 L22 26 L34 26Z" fill="#FBF8F1" stroke="#082F49" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 29 H36 L31 36 H9Z" fill="#082F49"/>
+      </svg>
+      <ol>
+        <li class="j-item">
+          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-sun"/></svg></span>
+          <div class="j-card" data-reveal="rise">
+            <p class="j-year">20XX – Now</p>
+            <h3 class="display-md mt-3">[Current role]</h3>
+            <p class="mt-1 font-semibold text-ocean">[Company or studio]</p>
+            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">Shipping product features, mentoring teammates and sweating the small details that make interfaces feel calm.</p>
+          </div>
+        </li>
+        <li class="j-item">
+          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-shell"/></svg></span>
+          <div class="j-card" data-reveal="rise">
+            <p class="j-year">20XX – 20XX</p>
+            <h3 class="display-md mt-3">[Previous role]</h3>
+            <p class="mt-1 font-semibold text-ocean">[Company or studio]</p>
+            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">Built and maintained client websites end to end, from design handoff to deployment.</p>
+          </div>
+        </li>
+        <li class="j-item">
+          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-starfish"/></svg></span>
+          <div class="j-card" data-reveal="rise">
+            <p class="j-year">20XX</p>
+            <h3 class="display-md mt-3">[Degree, bootcamp or certification]</h3>
+            <p class="mt-1 font-semibold text-ocean">[School or program]</p>
+            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">Where the fundamentals clicked: semantics, the box model and why accessibility is never optional.</p>
+          </div>
+        </li>
+        <li class="j-item">
+          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-hibiscus"/></svg></span>
+          <div class="j-card" data-reveal="rise">
+            <p class="j-year">20XX</p>
+            <h3 class="display-md mt-3">The first website</h3>
+            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">A single page with a blinking title and one very confused image. I was hooked.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="wave-box bottom-0 h-20 sm:h-28 z-[1]" aria-hidden="true"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#082F49" data-amp="12" data-wl="720" data-base="70" data-speed="44"></svg></div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="contact-bg relative overflow-hidden text-foam pt-28 sm:pt-36">
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
+    <h2 class="display-xl contact-title" data-reveal="wipe">Let's make<br>waves together.</h2>
+    <p class="mt-8 max-w-md text-lg text-foam/90" data-reveal="rise">Got an idea, a rough sketch or a site that needs rescuing? Tell me about it. I usually reply within [two] working days.</p>
+
+    <!-- GANTI: email & tautan sosial -->
+    <div class="mt-10 flex flex-wrap items-center gap-3" data-reveal="rise" style="--d:.1s">
+      <a href="mailto:hello@example.com" class="btn btn-coral !text-lg sm:!text-xl !px-7 !py-4"><i class="bi bi-envelope-fill" aria-hidden="true"></i>hello@example.com</a>
+      <button type="button" id="copyEmail" data-email="hello@example.com" class="btn btn-line"><i class="bi bi-clipboard" aria-hidden="true"></i><span>Copy email</span></button>
+    </div>
+    <ul class="mt-4 flex flex-wrap gap-3" aria-label="Social profiles" data-reveal="rise" style="--d:.2s">
+      <li><a class="btn btn-line" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i>GitHub</a></li>
+      <li><a class="btn btn-line" href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
+      <li><a class="btn btn-line" href="https://www.instagram.com/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram" aria-hidden="true"></i>Instagram</a></li>
+      <li><a class="btn btn-line" href="https://x.com/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x" aria-hidden="true"></i>X</a></li>
+    </ul>
+  </div>
+
+  <!-- Sunset scene -->
+  <div class="relative mt-16 h-[340px] sm:h-[440px]" aria-hidden="true">
+    <div class="sun-set absolute left-1/2 -translate-x-1/2 bottom-[56px] w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full"></div>
+    <svg class="float absolute left-[8%] top-[20%] w-10 h-10 text-sand/80"><use href="#i-sparkle"/></svg>
+    <svg class="float-slow absolute right-[12%] top-[8%] w-8 h-8 text-foam/80"><use href="#i-sparkle"/></svg>
+    <div class="wave-box bottom-0" style="height:56%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#0B4468" data-amp="12" data-wl="720" data-base="26" data-speed="44"></svg></div>
+    <div class="wave-box bottom-0" style="height:42%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#0E5A8A" data-amp="11" data-wl="480" data-base="26" data-phase="1" data-speed="36"></svg></div>
+    <div class="wave-box bottom-0" style="height:30%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="9" data-wl="720" data-base="28" data-phase="2" data-speed="30"></svg></div>
+    <div class="wave-box bottom-0" style="height:22%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#EBDDBA" data-amp="8" data-wl="360" data-base="26" data-phase="3" data-speed="38"></svg></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="grain relative bg-sand text-deep">
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 pb-10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <a href="#hero" class="flex items-center gap-3 font-display font-bold text-xl tracking-tight">
+      <span class="grid place-items-center w-10 h-10 rounded-full bg-coral text-deep font-extrabold text-base">YN</span>
+      [Your Name], web developer
+    </a>
+    <p class="text-sm text-center max-w-xs sm:max-w-none">&copy; <span id="year">2026</span> [Your Name]. Built by hand with HTML, Tailwind and a lot of sunshine.</p>
+    <div class="flex items-center gap-3" aria-hidden="false">
+      <svg class="w-7 h-7 text-coral" aria-hidden="true"><use href="#i-starfish"/></svg>
+      <svg class="w-7 h-7 text-ocean" aria-hidden="true"><use href="#i-shell"/></svg>
+      <svg class="w-7 h-7 text-coral" aria-hidden="true"><use href="#i-hibiscus"/></svg>
+      <a href="#hero" class="ml-2 grid place-items-center w-11 h-11 rounded-full bg-deep text-foam transition-transform hover:-translate-y-1" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">Email copied to clipboard</div>
+
+<script>
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Footer year */
+  $('#year').textContent = new Date().getFullYear();
+
+  /* Draw wave paths (seamless loop: width 2880 = 2 x 1440, wavelength divides 1440) */
+  $$('svg.wave').forEach(svg => {
+    const W = 2880, H = svg.viewBox.baseVal.height;
+    const amp = +svg.dataset.amp || 12, wl = +svg.dataset.wl || 720;
+    const ph = +svg.dataset.phase || 0, base = +svg.dataset.base || 30;
+    let d = `M0 ${H} L0 ${(base + amp * Math.sin(ph)).toFixed(1)}`;
+    for (let x = 16; x <= W; x += 16) d += ` L${x} ${(base + amp * Math.sin((x / wl) * 2 * Math.PI + ph)).toFixed(1)}`;
+    d += ` L${W} ${H} Z`;
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('fill', svg.dataset.fill || '#fff');
+    svg.appendChild(p);
+    svg.style.setProperty('--dur', (svg.dataset.speed || 30) + 's');
+  });
+
+  /* Split hero headline into letters (wave-in on load, bounce on hover) */
+  let idx = 0;
+  $$('.split').forEach(el => {
+    const text = el.textContent.trim();
+    el.textContent = '';
+    el.setAttribute('aria-hidden', 'true');
+    text.split(' ').forEach((word, w, arr) => {
+      const wEl = document.createElement('span');
+      wEl.className = 'w';
+      [...word].forEach(ch => {
+        const s = document.createElement('span');
+        s.textContent = ch;
+        s.style.setProperty('--i', idx++);
+        wEl.appendChild(s);
+      });
+      el.appendChild(wEl);
+      if (w < arr.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  /* Ticker: duplicate content for a seamless loop */
+  $$('[data-marquee]').forEach(t => { t.innerHTML += t.innerHTML; });
+
+  /* Mobile menu */
+  const btn = $('#menuBtn'), menu = $('#mobileMenu');
+  const setMenu = open => {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    $('i', btn).className = open ? 'bi bi-x-lg text-2xl' : 'bi bi-list text-2xl';
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) $('a', menu).focus();
+  };
+  btn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+  $$('a', menu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); btn.focus(); } });
+  matchMedia('(min-width:768px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+
+  /* Active nav link */
+  const links = $$('[data-nav]');
+  const sections = ['about', 'skills', 'work', 'journey'].map(id => document.getElementById(id));
+  if ('IntersectionObserver' in window) {
+    const navIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        links.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id ? 'location' : 'false'));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(s => s && navIO.observe(s));
+    const heroIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(a => a.setAttribute('aria-current', 'false')); }), { rootMargin: '-45% 0px -50% 0px' });
+    heroIO.observe($('#hero'));
+  }
+
+  /* Reveal on scroll */
+  const revealEls = $$('[data-reveal]');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, o) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); o.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-in'));
+  }
+
+  /* Pointer parallax for hero decorations */
+  const hero = $('#hero');
+  if (!reduce && matchMedia('(pointer:fine)').matches) {
+    hero.addEventListener('pointermove', e => {
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
+      hero.style.setProperty('--my', ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
+    });
+    hero.addEventListener('pointerleave', () => { hero.style.setProperty('--mx', 0); hero.style.setProperty('--my', 0); });
+  }
+
+  /* Sailboat follows scroll along the journey line */
+  const jw = $('#journeyWrap'), boat = $('#boat');
+  if (jw && boat) {
+    if (reduce) {
+      boat.style.display = 'none';
+    } else {
+      let ticking = false;
+      const update = () => {
+        const r = jw.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (innerHeight * 0.55 - r.top) / r.height));
+        jw.style.setProperty('--p', p.toFixed(4));
+        ticking = false;
+      };
+      addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      addEventListener('resize', update);
+      update();
+    }
+  }
+
+  /* Copy email */
+  const toast = $('#toast');
+  let toastTimer;
+  const showToast = msg => {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+  };
+  const copyBtn = $('#copyEmail');
+  copyBtn.addEventListener('click', async () => {
+    const email = copyBtn.dataset.email;
+    try {
+      await navigator.clipboard.writeText(email);
+      showToast('Email copied to clipboard');
+    } catch (err) {
+      const ta = document.createElement('textarea');
+      ta.value = email; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); showToast('Email copied to clipboard'); }
+      catch (e) { showToast(email); }
+      ta.remove();
+    }
+    const icon = $('i', copyBtn), label = $('span', copyBtn);
+    icon.className = 'bi bi-clipboard-check'; label.textContent = 'Copied';
+    setTimeout(() => { icon.className = 'bi bi-clipboard'; label.textContent = 'Copy email'; }, 2000);
+  });
+})();
+</script>
+</body>
+</html>
