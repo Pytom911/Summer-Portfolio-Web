@@ -1,18 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PytomDev | Web Developer</title>
-<meta name="description" content="PytomDev is a web developer crafting fast, accessible and quietly delightful websites.">
+<title>PytomDev | Frontend Developer · React & Next.js</title>
+<meta name="description" content="PytomDev, frontend developer di Jakarta. Bikin website cepat, aksesibel, dan rapi pakai React, Next.js, Tailwind. 12+ project selesai, 100 Lighthouse.">
 <meta name="theme-color" content="#FBF8F1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='34' fill='%23FF6B45'/%3E%3Ccircle cx='50' cy='50' r='44' fill='none' stroke='%23FF6B45' stroke-width='6' stroke-dasharray='6 11.5' stroke-linecap='round'/%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -21,11 +20,12 @@
       extend: {
         colors: {
           ocean: '#0E5A8A', deep: '#082F49', 'sea-ink': '#06263D', lagoon: '#A9DDF5', mist: '#DDF3FC',
-          sand: '#EBDDBA', dune: '#D8C08A', foam: '#FBF8F1', coral: '#FF6B45', sunset: '#FF7A3D', 'sun-glow': '#FFD28C'
+          sand: '#FFF1C7', dune: '#F5D67A', foam: '#FBF8F1', coral: '#FF6B45', sunset: '#FF7A3D',
+          turquoise: '#14B8A6', mango: '#FFB703'
         },
         fontFamily: {
-          display: ['Bricolage Grotesque', 'Arial Narrow', 'sans-serif'],
-          sans: ['Instrument Sans', 'system-ui', 'sans-serif']
+          display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+          sans: ['Sora', 'system-ui', 'sans-serif']
         }
       }
     }
@@ -33,259 +33,211 @@
 </script>
 <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-<a href="#main" class="skip">Skip to content</a>
-
-<!-- Reusable SVG stickers -->
+<a href="#main" class="skip">Lewati ke konten</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
-    <symbol id="i-starfish" viewBox="0 0 100 100">
-      <polygon points="50,8 61.8,35.8 91.8,38.4 69,58.2 75.9,87.6 50,72 24.1,87.6 31,58.2 8.2,38.4 38.2,35.8" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round"/>
-      <g fill="#082F49" opacity=".3">
-        <circle cx="50" cy="30" r="2.4"/><circle cx="50" cy="19" r="2.4"/>
-        <circle cx="70.9" cy="45.2" r="2.4"/><circle cx="81.4" cy="41.8" r="2.4"/>
-        <circle cx="62.9" cy="69.8" r="2.4"/><circle cx="69.4" cy="78.7" r="2.4"/>
-        <circle cx="37.1" cy="69.8" r="2.4"/><circle cx="30.6" cy="78.7" r="2.4"/>
-        <circle cx="29.1" cy="45.2" r="2.4"/><circle cx="18.6" cy="41.8" r="2.4"/>
-      </g>
-    </symbol>
-    <symbol id="i-hibiscus" viewBox="0 0 100 100">
-      <g fill="currentColor" stroke="#FBF8F1" stroke-width="2">
-        <ellipse cx="50" cy="26" rx="15" ry="24"/>
-        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(72 50 50)"/>
-        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(144 50 50)"/>
-        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(216 50 50)"/>
-        <ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(288 50 50)"/>
-      </g>
-      <circle cx="50" cy="50" r="9" fill="#FFD98E"/><circle cx="50" cy="50" r="4" fill="#082F49" opacity=".35"/>
-    </symbol>
-    <symbol id="i-shell" viewBox="0 0 100 100">
-      <path d="M50 92 L8 44 C8 14 92 14 92 44 Z" fill="currentColor"/>
-      <g stroke="#082F49" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" fill="none">
-        <path d="M50 90 L22 33"/><path d="M50 90 L36 24"/><path d="M50 90 L50 21"/><path d="M50 90 L64 24"/><path d="M50 90 L78 33"/>
-      </g>
-      <rect x="38" y="88" width="24" height="8" rx="4" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-sparkle" viewBox="0 0 100 100">
-      <path d="M50 4 Q54 46 96 50 Q54 54 50 96 Q46 54 4 50 Q46 46 50 4Z" fill="currentColor"/>
-    </symbol>
-    <symbol id="i-sun" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="21" fill="currentColor"/>
-      <circle cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="5 9.14" stroke-linecap="round"/>
-    </symbol>
-    <symbol id="i-cloud" viewBox="0 0 112 88">
-      <path d="M22 76 Q4 76 4 60 Q4 46 20 44 Q22 24 44 24 Q58 24 64 36 Q70 30 80 30 Q96 30 96 48 Q108 50 108 62 Q108 76 94 76 Z" fill="currentColor"/>
-    </symbol>
+    <symbol id="i-starfish" viewBox="0 0 100 100"><polygon points="50,8 61.8,35.8 91.8,38.4 69,58.2 75.9,87.6 50,72 24.1,87.6 31,58.2 8.2,38.4 38.2,35.8" fill="currentColor" stroke="currentColor" stroke-width="10" stroke-linejoin="round"/><g fill="#082F49" opacity=".3"><circle cx="50" cy="30" r="2.4"/><circle cx="50" cy="19" r="2.4"/><circle cx="70.9" cy="45.2" r="2.4"/><circle cx="81.4" cy="41.8" r="2.4"/><circle cx="62.9" cy="69.8" r="2.4"/><circle cx="69.4" cy="78.7" r="2.4"/><circle cx="37.1" cy="69.8" r="2.4"/><circle cx="30.6" cy="78.7" r="2.4"/><circle cx="29.1" cy="45.2" r="2.4"/><circle cx="18.6" cy="41.8" r="2.4"/></g></symbol>
+    <symbol id="i-hibiscus" viewBox="0 0 100 100"><g fill="currentColor" stroke="#FBF8F1" stroke-width="2"><ellipse cx="50" cy="26" rx="15" ry="24"/><ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(72 50 50)"/><ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(144 50 50)"/><ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(216 50 50)"/><ellipse cx="50" cy="26" rx="15" ry="24" transform="rotate(288 50 50)"/></g><circle cx="50" cy="50" r="9" fill="#FFD98E"/><circle cx="50" cy="50" r="4" fill="#082F49" opacity=".35"/></symbol>
+    <symbol id="i-shell" viewBox="0 0 100 100"><path d="M50 92 L8 44 C8 14 92 14 92 44 Z" fill="currentColor"/><g stroke="#082F49" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" fill="none"><path d="M50 90 L22 33"/><path d="M50 90 L36 24"/><path d="M50 90 L50 21"/><path d="M50 90 L64 24"/><path d="M50 90 L78 33"/></g><rect x="38" y="88" width="24" height="8" rx="4" fill="currentColor"/></symbol>
+    <symbol id="i-sparkle" viewBox="0 0 100 100"><path d="M50 4 Q54 46 96 50 Q54 54 50 96 Q46 54 4 50 Q46 46 50 4Z" fill="currentColor"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 100 100"><circle cx="50" cy="50" r="21" fill="currentColor"/><circle cx="50" cy="50" r="36" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="5 9.14" stroke-linecap="round"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 112 88"><path d="M22 76 Q4 76 4 60 Q4 46 20 44 Q22 24 44 24 Q58 24 64 36 Q70 30 80 30 Q96 30 96 48 Q108 50 108 62 Q108 76 94 76 Z" fill="currentColor"/></symbol>
+    <symbol id="i-fish" viewBox="0 0 100 60"><ellipse cx="42" cy="30" rx="28" ry="18" fill="currentColor"/><path d="M68 30 L92 10 L92 50 Z" fill="currentColor"/><circle cx="28" cy="24" r="4" fill="#FBF8F1"/><circle cx="28" cy="24" r="2" fill="#082F49"/><path d="M34 30 Q44 34 54 30" fill="none" stroke="#082F49" stroke-opacity=".35" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-jelly" viewBox="0 0 100 100"><path d="M20 45 Q50 10 80 45 Q70 55 80 60 Q50 50 20 60 Q30 55 20 45" fill="currentColor" opacity=".9"/><path d="M30 60 Q32 80 28 90" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".6"/><path d="M45 62 Q47 82 43 92" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".6"/><path d="M60 62 Q62 82 58 92" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".6"/><path d="M70 60 Q72 80 68 90" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".6"/></symbol>
+    <symbol id="i-crab" viewBox="0 0 100 80"><ellipse cx="50" cy="48" rx="32" ry="22" fill="currentColor"/><circle cx="38" cy="36" r="7" fill="#FBF8F1"/><circle cx="62" cy="36" r="7" fill="#FBF8F1"/><circle cx="38" cy="36" r="3" fill="#082F49"/><circle cx="62" cy="36" r="3" fill="#082F49"/><path d="M18 52 Q6 38 14 28 Q18 36 22 42" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M82 52 Q94 38 86 28 Q82 36 78 42" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></symbol>
+    <symbol id="i-anchor" viewBox="0 0 100 100"><circle cx="50" cy="18" r="10" fill="none" stroke="currentColor" stroke-width="4"/><path d="M50 28 L50 82" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M22 62 Q50 88 78 62" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M30 42 L70 42" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></symbol>
   </defs>
 </svg>
-
-<!-- ===================== NAVBAR ===================== -->
 <header class="nav-shell fixed inset-x-0 top-0 z-50">
-  <nav class="nav-inner mx-auto max-w-6xl flex items-center justify-between rounded-full bg-foam/85 backdrop-blur-md ring-1 ring-deep/10 shadow-[0_10px_30px_-14px_rgba(8,47,73,.45)] p-2" aria-label="Primary">
-    <a href="#hero" class="group flex items-center gap-3" aria-label="PytomDev, back to top">
-      <span class="grid place-items-center w-11 h-11 rounded-full bg-coral text-deep font-display font-extrabold text-lg transition-transform duration-300 group-hover:-rotate-12">PD</span>
-      <span class="hidden sm:block font-display font-bold text-xl tracking-tight pr-2">PytomDev</span>
+  <nav class="nav-inner mx-auto max-w-7xl flex items-center justify-between rounded-full px-2 py-2" aria-label="Utama">
+    <a href="#hero" class="flex items-center gap-3 pl-1" aria-label="PytomDev, kembali ke atas">
+      <span class="grid place-items-center w-10 h-10 rounded-full bg-coral text-white font-display font-bold text-sm">PD</span>
+      <span translate="no" class="hidden sm:block font-display font-bold text-[1.05rem] tracking-tight">PytomDev</span>
+      <span class="hidden lg:inline-flex items-center gap-1.5 ml-2 text-xs font-bold px-2.5 py-1 rounded-full bg-mango text-deep"><i class="bi bi-dot text-base leading-none" aria-hidden="true"></i>Tersedia untuk projek</span>
     </a>
-    <ul class="hidden md:flex items-center gap-1 text-[15px] font-medium">
-      <li><a data-nav class="nav-link" href="#about">About</a></li>
-      <li><a data-nav class="nav-link" href="#skills">Skills</a></li>
-      <li><a data-nav class="nav-link" href="#work">Work</a></li>
-      <li><a data-nav class="nav-link" href="#journey">Journey</a></li>
+    <ul class="hidden md:flex items-center gap-1">
+      <li><a data-nav class="nav-link" href="#about">Tentang</a></li>
+      <li><a data-nav class="nav-link" href="#skills">Keahlian</a></li>
+      <li><a data-nav class="nav-link" href="#work">Karya</a></li>
+      <li><a data-nav class="nav-link" href="#journey">Perjalanan</a></li>
     </ul>
     <div class="flex items-center gap-2">
-      <a href="#contact" class="btn btn-coral hidden sm:inline-flex !py-3 !px-5">Say hello</a>
-      <button id="menuBtn" type="button" class="md:hidden grid place-items-center w-11 h-11 rounded-full bg-deep text-foam" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
-        <i class="bi bi-list text-2xl" aria-hidden="true"></i>
-      </button>
+      <a href="#contact" class="btn btn-coral hidden sm:inline-flex !py-2.5 !px-5 text-sm">Sapa saya <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+      <button id="menuBtn" type="button" class="md:hidden grid place-items-center w-10 h-10 rounded-full bg-deep text-white" aria-expanded="false" aria-controls="mobileMenu" aria-label="Buka menu"><i class="bi bi-list text-xl" aria-hidden="true"></i></button>
     </div>
   </nav>
 </header>
-
-<!-- Mobile menu -->
-<div id="mobileMenu" class="fixed inset-0 z-40 bg-deep text-foam md:hidden overflow-y-auto" aria-hidden="true">
-  <div class="relative min-h-full flex flex-col justify-between px-7 pt-32 pb-10 overflow-hidden">
-    <svg class="absolute -right-24 bottom-20 w-72 h-72 text-coral spin pointer-events-none" aria-hidden="true"><use href="#i-sun"/></svg>
-    <nav aria-label="Mobile" class="relative">
+<div id="mobileMenu" class="fixed inset-0 z-40 bg-deep text-white md:hidden overflow-y-auto" aria-hidden="true">
+  <div class="relative min-h-full flex flex-col justify-between px-7 pt-28 pb-10 overflow-hidden">
+    <svg class="absolute -right-16 bottom-24 w-64 h-64 text-white/10 pointer-events-none" aria-hidden="true"><use href="#i-shell"/></svg>
+    <nav aria-label="Navigasi seluler" class="relative">
       <ul>
-        <li style="--n:0"><a data-nav class="menu-link" href="#about">About</a></li>
-        <li style="--n:1"><a data-nav class="menu-link" href="#skills">Skills</a></li>
-        <li style="--n:2"><a data-nav class="menu-link" href="#work">Work</a></li>
-        <li style="--n:3"><a data-nav class="menu-link" href="#journey">Journey</a></li>
-        <li style="--n:4"><a data-nav class="menu-link text-coral" href="#contact">Say hello</a></li>
+        <li style="--n:0"><a data-nav class="menu-link" href="#about">Tentang</a></li>
+        <li style="--n:1"><a data-nav class="menu-link" href="#skills">Keahlian</a></li>
+        <li style="--n:2"><a data-nav class="menu-link" href="#work">Karya</a></li>
+        <li style="--n:3"><a data-nav class="menu-link" href="#journey">Perjalanan</a></li>
+        <li style="--n:4"><a data-nav class="menu-link text-coral" href="#contact">Sapa saya</a></li>
       </ul>
     </nav>
-    <p class="relative mt-12 text-foam/80">hello@example.com</p>
+    <p class="relative mt-10 text-white/60 text-sm flex items-center gap-2"><i class="bi bi-envelope" aria-hidden="true"></i> hello@pytom.dev</p>
   </div>
 </div>
-
 <main id="main">
-
-<!-- ===================== HERO ===================== -->
-<section id="hero" class="hero-bg relative isolate overflow-hidden pt-28 sm:pt-32 pb-28 sm:pb-36">
-  <!-- Sun -->
-  <div class="parallax hero-sun absolute -right-[12vw] top-16 sm:-right-[4vw] sm:top-6 aspect-square pointer-events-none" style="--d:12" aria-hidden="true">
-    <svg viewBox="0 0 400 400" class="w-full h-full">
-      <g class="spin"><circle cx="200" cy="200" r="168" fill="none" stroke="#FF6B45" stroke-width="34" stroke-dasharray="7 36.98" stroke-linecap="round"/></g>
-      <circle cx="200" cy="200" r="128" fill="#FF6B45"/>
-      <circle cx="200" cy="200" r="100" fill="#FF8559"/>
-      <circle cx="200" cy="200" r="148" fill="none" stroke="#FBF8F1" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round" opacity=".75"/>
-    </svg>
-  </div>
-  <!-- Cloud — single, decouple headline -->
-  <div class="parallax absolute left-[4%] top-[15%] pointer-events-none opacity-80" style="--d:22" aria-hidden="true">
-    <svg class="w-20 h-16 sm:w-28 sm:h-20 text-foam/75"><use href="#i-cloud"/></svg>
-  </div>
-
-  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
-    <span class="hero-kicker" data-reveal="rise"><i class="bi bi-brightness-high" aria-hidden="true"></i> Summer &rsquo;26 — PytomDev open for new waves</span>
-    <div class="relative mt-5">
-      <h1 class="display-xl" aria-label="Crafting Digital Waves.">
-        <span class="line block split">Crafting</span>
-        <span class="line block split pl-[10vw] lg:pl-[16%]">Digital</span>
-        <span class="line block pl-[3vw]"><span class="split">Waves.</span><svg class="parallax inline-block w-[.72em] h-[.72em] ml-[.12em] align-baseline text-coral" style="--d:26" aria-hidden="true"><use href="#i-hibiscus"/></svg></span>
-      </h1>
-      <!-- Rotating sticker -->
-      <div class="hero-sticker parallax absolute right-[6%] top-[-1%] sm:right-[10%] sm:top-[2%]" style="--d:18" aria-hidden="true">
-        <svg viewBox="0 0 120 120" class="spin-fast w-24 h-24 sm:w-32 sm:h-32">
-          <defs><path id="circ" d="M60 60 m-44 0 a44 44 0 1 1 88 0 a44 44 0 1 1 -88 0"/></defs>
-          <circle cx="60" cy="60" r="58" fill="#082F49"/>
-          <text font-family="Instrument Sans, sans-serif" font-size="11.5" font-weight="600" fill="#FBF8F1" letter-spacing="1.6"><textPath href="#circ">open for projects ✺ say hello ✺ open for projects ✺ </textPath></text>
-          <circle cx="60" cy="60" r="12" fill="#FF6B45"/>
-        </svg>
-      </div>
-
+<!-- ===================== HERO · pantai border pasir & laut ===================== -->
+<section id="hero" class="hero-bg relative isolate overflow-hidden pt-28 sm:pt-32 pb-0">
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 pb-10 sm:pb-14">
+    <div class="flex flex-wrap items-center gap-2" data-reveal="rise">
+      <span class="hero-kicker"><i class="bi bi-brightness-high" aria-hidden="true"></i> Musim panas &rsquo;26 · <span translate="no">PytomDev</span> · Frontend developer, Jakarta</span>
+      <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full bg-white border border-deep/10 text-deep"><svg class="w-4 h-4 text-turquoise" aria-hidden="true"><use href="#i-shell"/></svg> Mode pantai</span>
     </div>
-
-    <div class="mt-10 lg:mt-6 grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
-      <div class="lg:col-span-5">
-        <p class="text-lg sm:text-xl leading-relaxed max-w-md text-balance" data-reveal="rise" style="--d:.5s">
-          I&rsquo;m PytomDev, a web developer who builds fast, accessible and quietly delightful websites, from the first sketch in the sand to the deploy at high tide.
+    <div class="mt-6 grid lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-7">
+        <h1 class="display-xl" aria-label="Crafting Digital Waves.">
+          <span class="block split">Crafting</span>
+          <span class="block split">Digital <span class="inline-flex items-baseline gap-2">Waves.<svg class="w-[.58em] h-[.58em] text-coral translate-y-1" aria-hidden="true"><use href="#i-hibiscus"/></svg></span></span>
+        </h1>
+        <p class="mt-6 text-[1.05rem] sm:text-lg leading-relaxed max-w-[52ch] text-balance text-deep/75" data-reveal="rise" style="--d:.35s">
+          Saya <span translate="no">PytomDev</span>, frontend developer yang mengubah sketsa kasar jadi produk yang cepat dan aksesibel. Dari coretan di pasir sampai deploy di laut dalam, saya bikin antarmuka yang selesai sebelum kopi kamu dingin.
         </p>
-        <div class="mt-8 flex flex-wrap gap-3" data-reveal="rise" style="--d:.65s">
-          <a href="#work" class="btn btn-coral"><i class="bi bi-water" aria-hidden="true"></i>See selected work</a>
-          <a href="#contact" class="btn btn-ghost-light"><i class="bi bi-envelope" aria-hidden="true"></i>Get in touch</a>
+        <div class="mt-7 flex flex-wrap gap-3" data-reveal="rise" style="--d:.5s">
+          <a href="#work" class="btn btn-coral">Lihat karya pilihan <i class="bi bi-water" aria-hidden="true"></i></a>
+          <a href="#contact" class="btn btn-ghost-light">Hubungi saya</a>
         </div>
+        <ul class="mt-8 grid grid-cols-3 gap-3 max-w-[520px] border-t border-deep/10 pt-6" data-reveal="rise" style="--d:.62s" aria-label="Sorotan">
+          <li class="rounded-2xl bg-white border border-deep/08 p-4 shadow-sm"><span class="font-display font-bold text-xl leading-none">12+</span><span class="block text-xs font-bold tracking-widest text-deep/50 mt-1">PROJECT SELESAI</span></li>
+          <li class="rounded-2xl bg-white border border-deep/08 p-4 shadow-sm"><span class="font-display font-bold text-xl leading-none">100</span><span class="block text-xs font-bold tracking-widest text-deep/50 mt-1">NILAI LIGHTHOUSE</span></li>
+          <li class="rounded-2xl bg-mango text-deep p-4 shadow-sm"><span class="font-display font-bold text-xl leading-none">2 hari</span><span class="block text-xs font-bold tracking-widest text-deep/60 mt-1">RATA BALAS</span></li>
+        </ul>
       </div>
-      <div class="lg:col-span-5 lg:col-start-8 lg:translate-y-8 max-w-md lg:max-w-none">
-        <div class="airmail postcard" data-reveal="pop" style="--d:.8s">
-          <div class="rounded-[.8rem] bg-foam overflow-hidden">
-            <div class="grid grid-cols-[1.35fr_1fr] gap-4 p-4 sm:p-5">
-              <div class="code rounded-xl bg-deep p-4 text-lagoon overflow-hidden">
-                <span class="opacity-70">// today&rsquo;s forecast</span><br>
-                <span class="text-coral">const</span> vibe = <span class="text-sand">&ldquo;sunny&rdquo;</span>;<br>
-                <span class="text-coral">await</span> ship({<br>
-                &nbsp;&nbsp;site: <span class="text-sand">&ldquo;yours&rdquo;</span>,<br>
-                &nbsp;&nbsp;speed: <span class="text-sand">&ldquo;fast&rdquo;</span>,<br>
-                });
-              </div>
-              <div class="flex flex-col justify-between gap-4">
-                <div class="self-end rounded-md border-2 border-dashed border-ocean/50 p-1.5 text-coral">
-                  <svg class="w-10 h-10" aria-hidden="true"><use href="#i-sun"/></svg>
-                </div>
-                <div class="text-sm leading-6">
-                  <p class="border-b border-dashed border-deep/30 pb-1">To: your next big idea</p>
-                  <p class="border-b border-dashed border-deep/30 pb-1 mt-2">From: PytomDev</p>
-                </div>
+      <div class="lg:col-span-5 max-w-lg lg:max-w-none" data-reveal="pop" style="--d:.65s">
+        <figure class="hero-beach-card">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80&auto=format&fit=crop" alt="Garis pantai berpasir saat golden hour, air turkuois bertemu pasir hangat" width="800" height="600" loading="eager" fetchpriority="high" class="w-full aspect-[4/3] object-cover">
+          <figcaption class="hero-beach-caption">
+            <span class="text-sm font-semibold flex items-center gap-2"><svg class="w-4 h-4 text-mango" aria-hidden="true"><use href="#i-starfish"/></svg> Pangandaran · 07:14</span>
+            <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-white text-deep">Live dari pantai</span>
+          </figcaption>
+        </figure>
+        <div class="mt-3 rounded-2xl bg-white border border-deep/08 p-4 shadow-sm">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold tracking-widest text-deep/40">PRAKIRAAN HARI INI</span>
+            <span class="inline-flex items-center gap-1 text-xs font-bold px-2.5 py-1 rounded-full bg-turquoise text-white"><i class="bi bi-sun" aria-hidden="true"></i> Cerah 31°</span>
+          </div>
+          <div class="mt-3 grid grid-cols-[1.35fr_1fr] gap-3">
+            <div class="code rounded-xl bg-deep p-3.5 text-lagoon overflow-hidden">
+              <span class="opacity-60">// kirim cepat</span><br>
+              <span class="text-coral">const</span> vibe = <span class="text-mango">&ldquo;cerah&rdquo;</span>;<br>
+              <span class="text-coral">await</span> ship({<br>
+              &nbsp;&nbsp;site: <span class="text-mango">&ldquo;punyamu&rdquo;</span>,<br>
+              &nbsp;&nbsp;speed: <span class="text-mango">&ldquo;cepat&rdquo;</span>,<br>
+              });
+            </div>
+            <div class="flex flex-col justify-between gap-3">
+              <div class="self-end w-10 h-10 grid place-items-center rounded-xl bg-mango text-deep"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-sun"/></svg></div>
+              <div class="rounded-xl border border-dashed border-deep/15 p-2.5 bg-sand/60">
+                <p class="text-xs leading-4"><span class="font-bold">Untuk:</span> ide besarmu</p>
+                <p class="text-xs leading-4 mt-1"><span class="font-bold">Dari:</span> <span translate="no">PytomDev</span></p>
               </div>
             </div>
-            <p class="font-display text-2xl sm:text-3xl font-extrabold tracking-tight bg-lagoon px-5 py-3">Greetings from localhost</p>
           </div>
         </div>
+        <p class="mt-2.5 text-center text-xs text-deep/45 flex items-center justify-center gap-1.5"><svg class="w-4 h-4 text-turquoise" aria-hidden="true"><use href="#i-fish"/></svg> Tanpa parallax, hanya ombak dan kode</p>
       </div>
     </div>
   </div>
-
-  <!-- Hero waves — 2 lapis only, clean edge -->
-  <div class="hero-waves absolute inset-x-0 bottom-0 h-[72px] sm:h-[96px] z-[1] pointer-events-none" aria-hidden="true">
-    <div class="wave-box bottom-0" style="height:100%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="8" data-wl="720" data-base="48" data-speed="28"></svg></div>
-    <div class="wave-box bottom-0" style="height:58%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#EBDDBA" data-amp="6" data-wl="720" data-base="36" data-phase="1" data-speed="32"></svg></div>
+  <!-- Waves · animasi pertemuan pasir & laut -->
+  <div class="relative h-[88px] sm:h-[112px] z-[1] pointer-events-none" aria-hidden="true">
+    <div class="wave-box bottom-0" style="height:100%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#14B8A6" data-amp="10" data-wl="720" data-base="58" data-speed="28"></svg></div>
+    <div class="wave-box bottom-0" style="height:72%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="8" data-wl="720" data-base="52" data-speed="24"></svg></div>
+    <div class="wave-box bottom-0" style="height:42%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FFF1C7" data-amp="6" data-wl="720" data-base="42" data-phase="1" data-speed="30"></svg></div>
+    <div class="hero-sand-strip absolute bottom-0 left-0 right-0"></div>
   </div>
 </section>
-
-<!-- ===================== ABOUT ===================== -->
-<section id="about" class="grain relative bg-sand pt-20 sm:pt-28 pb-28 lg:pb-40">
-  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-16 lg:gap-10 items-start">
+<!-- ===================== ABOUT · shoreline ===================== -->
+<section id="about" class="about-bg grain relative pt-16 sm:pt-20 pb-20 lg:pb-28">
+  <div class="absolute right-6 top-10 hidden lg:block opacity-90" aria-hidden="true"><svg class="w-14 h-14 text-coral float-gentle"><use href="#i-crab"/></svg></div>
+  <div class="absolute left-8 bottom-20 hidden lg:block opacity-60" aria-hidden="true"><svg class="w-11 h-11 text-turquoise"><use href="#i-shell"/></svg></div>
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-10 lg:gap-10 items-start">
     <div class="lg:col-span-7">
-      <h2 class="sr-only">About me</h2>
-      <p class="story" data-reveal="rise">
-        Hi, I&rsquo;m PytomDev, a <span class="pill pill-coral">web developer</span> who loves when things run <span class="pill pill-line">calm and fast</span>. I turn rough ideas into <span class="pill pill-deep">polished interfaces</span> that are easy to use, easy to maintain and kind to every screen.
+      <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest px-3 py-1.5 rounded-full bg-white border border-deep/10">TENTANG · GARIS PANTAI</span>
+      <h2 class="sr-only">Tentang saya</h2>
+      <p class="story mt-4" data-reveal="rise">
+        Halo, saya <span translate="no">PytomDev</span>, <span class="pill pill-coral">frontend developer</span> dari Jakarta yang suka hal yang <span class="pill pill-line">tenang dan cepat</span>. Saya mengubah ide kasar jadi <span class="pill pill-turquoise">antarmuka rapi</span> yang <span class="pill pill-mango">enak dipakai</span> di semua layar.
       </p>
-      <p class="mt-10 max-w-lg text-lg leading-relaxed" data-reveal="rise" style="--d:.15s">
-        My days follow the tide: sketch in the morning, build through the afternoon, ship before sunset. I care about clean code, readable design and pages that load before your coffee cools. Currently exploring the shoreline between product design and web performance.
+      <p class="mt-6 max-w-lg text-[1.02rem] leading-relaxed text-deep/75" data-reveal="rise" style="--d:.12s">
+        Tiga tahun saya merilis produk, dari dashboard surf school sampai pemesanan kafe dan toko keramik. Saya terobsesi dengan Core Web Vitals, kode bersih, dan aksesibilitas. Hari saya ikut pasang surut, sketsa pagi, bangun siang, rilis sebelum senja. Sekarang saya eksplor pertemuan desain produk dan performa web.
       </p>
+      <ul class="mt-6 flex flex-wrap gap-2" data-reveal="rise" style="--d:.2s" aria-label="Prinsip">
+        <li class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-deep/10 text-sm font-semibold"><svg class="w-4 h-4 text-coral" aria-hidden="true"><use href="#i-starfish"/></svg> Tenang</li>
+        <li class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-deep/10 text-sm font-semibold"><svg class="w-4 h-4 text-turquoise" aria-hidden="true"><use href="#i-fish"/></svg> Cepat</li>
+        <li class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-deep/10 text-sm font-semibold"><i class="bi bi-universal-access" aria-hidden="true"></i> Aksesibel</li>
+      </ul>
     </div>
-
-    <div class="lg:col-span-5 relative mx-auto w-full max-w-sm lg:max-w-none pb-8">
-      <figure class="polaroid relative w-[88%] lg:ml-auto" data-reveal="pop">
-        <div class="aspect-[4/5] rounded overflow-hidden relative bg-gradient-to-b from-lagoon to-mist grid place-items-center">
-          <svg class="w-40 h-40 text-coral absolute -top-8 -right-8 spin" aria-hidden="true"><use href="#i-sun"/></svg>
-          <svg class="w-24 h-24 text-ocean/70 absolute bottom-6 left-6" aria-hidden="true"><use href="#i-shell"/></svg>
-          <p class="relative font-display text-2xl font-bold text-ocean text-center leading-tight">[ your photo<br>goes here ]</p>
-        </div>
-        <figcaption class="pt-4 pb-1 font-display text-2xl font-bold tracking-tight">PytomDev, mid-deploy</figcaption>
+    <div class="lg:col-span-5 relative mx-auto w-full max-w-sm lg:max-w-none">
+      <figure class="polaroid relative w-[86%] lg:ml-auto" data-reveal="pop">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&auto=format&fit=crop" alt="Potret PytomDev, frontend developer yang tersenyum di pantai" width="600" height="750" loading="lazy" class="aspect-[4/5] w-full object-cover">
+        <figcaption class="pt-3 pb-1 font-display text-base font-bold tracking-tight flex items-center gap-2"><span translate="no">PytomDev</span>, lagi deploy <span class="ml-auto text-xs font-bold px-2 py-1 rounded-full bg-turquoise text-white">Jakarta · Remote</span></figcaption>
       </figure>
-      <svg class="float absolute -top-6 right-0 w-16 h-16 text-coral" aria-hidden="true"><use href="#i-starfish"/></svg>
-
-      <aside class="tide relative -mt-14 sm:-mt-16 w-[88%] rounded-2xl bg-deep text-foam p-6 shadow-[0_30px_50px_-25px_rgba(8,47,73,.7)]" data-reveal="rise" style="--d:.2s" aria-label="A typical day">
-        <h3 class="display-md">Tide table</h3>
-        <dl class="mt-4 text-[15px] leading-snug">
-          <div class="flex gap-4 justify-between py-2.5 border-b border-dotted border-foam/30"><dt class="font-display text-xl font-bold text-coral">Morning</dt><dd class="text-right text-foam/90">Sketching, planning, strong coffee</dd></div>
-          <div class="flex gap-4 justify-between py-2.5 border-b border-dotted border-foam/30"><dt class="font-display text-xl font-bold text-coral">Afternoon</dt><dd class="text-right text-foam/90">Building, testing, breaking, fixing</dd></div>
-          <div class="flex gap-4 justify-between py-2.5"><dt class="font-display text-xl font-bold text-coral">Sunset</dt><dd class="text-right text-foam/90">Shipping, then straight into the sea</dd></div>
+      <aside class="tide relative -mt-10 sm:-mt-12 w-[86%] rounded-2xl bg-white border border-deep/08 p-5 shadow-[0_20px_36px_-18px_rgba(8,47,73,.22)]" data-reveal="rise" style="--d:.18s" aria-label="Hari biasa">
+        <h3 class="font-display text-lg font-bold tracking-tight flex items-center gap-2"><svg class="w-5 h-5 text-coral" aria-hidden="true"><use href="#i-anchor"/></svg> Tabel pasang</h3>
+        <dl class="mt-3 text-sm leading-snug">
+          <div class="flex gap-4 justify-between py-2 border-b border-dotted border-deep/15"><dt class="font-bold text-coral">Pagi</dt><dd class="text-deep/70">Sketsa &amp; rencana, kopi kental</dd></div>
+          <div class="flex gap-4 justify-between py-2 border-b border-dotted border-deep/15"><dt class="font-bold text-coral">Siang</dt><dd class="text-deep/70">Bangun, tes, rusak, betulkan</dd></div>
+          <div class="flex gap-4 justify-between py-2"><dt class="font-bold text-coral">Senja</dt><dd class="text-deep/70">Rilis, lalu ke laut</dd></div>
         </dl>
       </aside>
     </div>
   </div>
 </section>
-
-<!-- ===================== SKILLS ===================== -->
-<section id="skills" class="ocean-bg relative overflow-hidden text-foam pt-32 sm:pt-40 pb-40 sm:pb-48">
-  <div class="wave-box top-0 h-20 sm:h-28 scale-y-[-1] z-[1]" aria-hidden="true"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#EBDDBA" data-amp="12" data-wl="720" data-base="70" data-speed="44"></svg></div>
-
-  <!-- Bubbles -->
+<!-- ===================== SKILLS · reef depth colorful ===================== -->
+<section id="skills" class="ocean-bg relative overflow-hidden text-white pt-24 sm:pt-32 pb-32 sm:pb-40">
+  <div class="wave-box top-0 h-14 sm:h-18 scale-y-[-1] z-[1]" aria-hidden="true"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FFF1C7" data-amp="8" data-wl="720" data-base="70" data-speed="44"></svg></div>
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
-    <span class="bubble" style="left:6%;--s:14px;--d:17s;--delay:-3s"></span>
-    <span class="bubble" style="left:18%;--s:26px;--d:23s;--delay:-11s"></span>
-    <span class="bubble" style="left:33%;--s:10px;--d:15s;--delay:-7s"></span>
-    <span class="bubble" style="left:49%;--s:20px;--d:21s;--delay:-14s"></span>
-    <span class="bubble" style="left:64%;--s:12px;--d:18s;--delay:-2s"></span>
-    <span class="bubble" style="left:78%;--s:30px;--d:26s;--delay:-9s"></span>
-    <span class="bubble" style="left:91%;--s:16px;--d:19s;--delay:-16s"></span>
+    <span class="bubble coral" style="left:8%;--s:14px;--d:20s;--delay:-2s"></span>
+    <span class="bubble turquoise" style="left:20%;--s:22px;--d:26s;--delay:-8s"></span>
+    <span class="bubble mango" style="left:34%;--s:10px;--d:18s;--delay:-4s"></span>
+    <span class="bubble" style="left:48%;--s:18px;--d:24s;--delay:-10s"></span>
+    <span class="bubble turquoise" style="left:62%;--s:12px;--d:20s;--delay:-3s"></span>
+    <span class="bubble coral" style="left:76%;--s:26px;--d:28s;--delay:-9s"></span>
+    <span class="bubble mango" style="left:90%;--s:16px;--d:22s;--delay:-6s"></span>
+    <span class="bubble" style="left:54%;--s:8px;--d:16s;--delay:-12s"></span>
+    <svg class="hidden lg:block absolute right-[6%] top-[18%] w-12 h-7 text-white/35 fish-swim" aria-hidden="true"><use href="#i-fish"/></svg>
+    <svg class="hidden lg:block absolute left-[7%] top-[26%] w-9 h-9 text-white/20" aria-hidden="true"><use href="#i-jelly"/></svg>
+    <svg class="hidden lg:block absolute right-[12%] top-[42%] w-8 h-8 text-mango/30" aria-hidden="true"><use href="#i-starfish"/></svg>
   </div>
-
-  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-14 lg:gap-10">
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 grid lg:grid-cols-12 gap-10">
     <div class="lg:col-span-4 lg:sticky lg:top-32 self-start">
-      <h2 class="display-lg" data-reveal="wipe">Tools for deep water.</h2>
-      <p class="mt-6 max-w-sm text-lg text-foam/85" data-reveal="rise" style="--d:.2s">I&rsquo;m comfortable near the surface and keep swimming deeper. Here&rsquo;s my kit, sorted by how far down I&rsquo;ve taken each tool.</p>
+      <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-white">KEAHLIAN · KARANG</span>
+      <h2 class="display-lg mt-3" data-reveal="wipe">Perkakas untuk<br>air dalam.</h2>
+      <p class="mt-4 max-w-sm text-[1.02rem] leading-relaxed text-white/75" data-reveal="rise" style="--d:.15s">Nyaman di permukaan, terus menyelam lebih dalam. Saya urut dari yang paling sering saya pakai.</p>
+      <p class="mt-4 inline-flex items-center gap-2 text-xs font-bold text-white/60"><svg class="w-4 h-4 text-mango" aria-hidden="true"><use href="#i-fish"/></svg> Makin dalam makin langka, warna artinya mahir</p>
     </div>
-
     <div class="lg:col-span-8 depth">
       <div class="zone" data-reveal="rise">
-        <h3 class="display-md">Shallows <span class="font-sans text-base font-medium text-foam/70 tracking-normal ml-2">0 to 5 m, my daily kit</span></h3>
-        <ul class="flex flex-wrap gap-3 mt-5">
-          <li class="chip chip-lg chip-a">HTML &amp; CSS</li>
-          <li class="chip chip-lg chip-b">JavaScript</li>
-          <li class="chip chip-lg chip-c">Tailwind CSS</li>
-          <li class="chip chip-lg chip-a">React</li>
+        <h3 class="display-md">Dangkal <span class="font-sans text-xs font-bold tracking-widest text-white/50 ml-2">0–5 m · harian</span></h3>
+        <ul class="flex flex-wrap gap-2.5 mt-4">
+          <li class="chip chip-lg chip-b">HTML &amp; CSS</li>
+          <li class="chip chip-lg chip-a">JavaScript</li>
+          <li class="chip chip-lg chip-t">Tailwind CSS</li>
+          <li class="chip chip-lg chip-b">React</li>
           <li class="chip chip-lg chip-c">Git &amp; GitHub</li>
         </ul>
       </div>
       <div class="zone" data-reveal="rise">
-        <h3 class="display-md">Reef <span class="font-sans text-base font-medium text-foam/70 tracking-normal ml-2">5 to 20 m, confident and productive</span></h3>
-        <ul class="flex flex-wrap gap-3 mt-5">
-          <li class="chip chip-b">TypeScript</li>
+        <h3 class="display-md">Karang <span class="font-sans text-xs font-bold tracking-widest text-white/50 ml-2">5–20 m · percaya diri</span></h3>
+        <ul class="flex flex-wrap gap-2.5 mt-4">
+          <li class="chip chip-t">TypeScript</li>
           <li class="chip chip-c">Node.js</li>
           <li class="chip chip-a">Next.js</li>
           <li class="chip chip-c">PostgreSQL</li>
           <li class="chip chip-b">REST &amp; GraphQL</li>
           <li class="chip chip-c">Figma</li>
-          <li class="chip chip-a">Accessibility</li>
+          <li class="chip chip-t">Aksesibilitas</li>
         </ul>
       </div>
       <div class="zone" data-reveal="rise">
-        <h3 class="display-md">Open water <span class="font-sans text-base font-medium text-foam/70 tracking-normal ml-2">20 m and down, still exploring</span></h3>
-        <ul class="flex flex-wrap gap-3 mt-5">
+        <h3 class="display-md">Laut lepas <span class="font-sans text-xs font-bold tracking-widest text-white/50 ml-2">20 m+ · eksplorasi</span></h3>
+        <ul class="flex flex-wrap gap-2.5 mt-4">
           <li class="chip chip-c">Three.js</li>
           <li class="chip chip-c">WebAssembly</li>
           <li class="chip chip-c">Rust</li>
@@ -294,130 +246,82 @@
       </div>
     </div>
   </div>
-
-  <!-- Ticker — 1 baris only -->
-  <div class="relative z-10 mt-16 -rotate-1 scale-100" aria-hidden="true">
+  <div class="relative z-10 mt-12 -rotate-1" aria-hidden="true">
     <div class="marquee"><div class="track" data-marquee>
-      <span>HTML</span><svg class="w-7 h-7 text-coral"><use href="#i-sparkle"/></svg><span class="solid">JavaScript</span><svg class="w-7 h-7 text-coral"><use href="#i-sparkle"/></svg><span>React</span><svg class="w-7 h-7 text-coral"><use href="#i-sparkle"/></svg><span class="solid">Node.js</span><svg class="w-7 h-7 text-coral"><use href="#i-sparkle"/></svg><span>Tailwind</span><svg class="w-7 h-7 text-coral"><use href="#i-sparkle"/></svg>
+      <span>HTML</span><svg class="w-5 h-5 text-mango"><use href="#i-sparkle"/></svg><span class="solid">JavaScript</span><svg class="w-5 h-5 text-mango"><use href="#i-sparkle"/></svg><span class="turq">React</span><svg class="w-5 h-5 text-turquoise"><use href="#i-sparkle"/></svg><span class="solid">Node.js</span><svg class="w-5 h-5 text-mango"><use href="#i-sparkle"/></svg><span>Tailwind</span><svg class="w-5 h-5 text-turquoise"><use href="#i-sparkle"/></svg>
     </div></div>
   </div>
-
-  <div class="wave-box bottom-0 h-20 sm:h-28 z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="12" data-wl="720" data-base="70" data-speed="40"></svg></div>
+  <div class="wave-box bottom-0 h-14 sm:h-18 z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="10" data-wl="720" data-base="70" data-speed="40"></svg></div>
 </section>
-
-<!-- ===================== PROJECTS ===================== -->
-<section id="work" class="relative bg-foam pt-12 pb-32 sm:pb-44">
+<!-- ===================== PROJECTS · mid water colorful Unsplash ===================== -->
+<section id="work" class="work-bg relative pt-12 pb-24 sm:pb-32">
   <div class="mx-auto max-w-7xl px-5 sm:px-8">
     <div class="grid lg:grid-cols-12 gap-6 items-end">
-      <h2 class="display-lg lg:col-span-8" data-reveal="wipe">Selected work,<br>fresh from the shore.</h2>
-      <p class="lg:col-span-4 text-lg max-w-sm lg:justify-self-end" data-reveal="rise">A few projects I&rsquo;m proud of, each with its own tide and its own story.</p>
+      <div class="lg:col-span-8">
+        <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest px-3 py-1.5 rounded-full bg-white border border-deep/10">KARYA · PILIHAN</span>
+        <h2 class="display-lg mt-3" data-reveal="wipe">Karya pilihan,<br>fresh dari bibir pantai.</h2>
+      </div>
+      <p class="lg:col-span-4 text-[1.02rem] leading-relaxed max-w-sm lg:justify-self-end text-deep/60" data-reveal="rise">Empat produk yang saya banggakan, masing-masing punya ombaknya sendiri.</p>
     </div>
-
-    <div class="mt-16 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-16 items-start">
-
-      <!-- Project 1: wide ocean window -->
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-x-8 gap-y-12 items-start">
       <article class="project lg:col-span-8" data-reveal="rise">
-        <a href="https://example.com/shoreline" class="block rounded-[2.75rem]">
-          <div class="cover relative aspect-[4/3.4] sm:aspect-[16/11] rounded-[2rem] sm:rounded-[2.75rem] overflow-hidden bg-deep">
-            <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 800 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0E5A8A"/><stop offset="1" stop-color="#082F49"/></linearGradient></defs>
-              <rect width="800" height="560" fill="url(#g1)"/>
-              <circle cx="660" cy="110" r="120" fill="#FF6B45"/>
-              <rect x="60" y="40" width="540" height="330" rx="22" fill="#FBF8F1"/>
-              <rect x="60" y="40" width="540" height="44" rx="22" fill="#DDF3FC"/><rect x="60" y="64" width="540" height="20" fill="#DDF3FC"/>
-              <circle cx="88" cy="62" r="6" fill="#FF6B45"/><circle cx="108" cy="62" r="6" fill="#D8C08A"/><circle cx="128" cy="62" r="6" fill="#0E5A8A"/>
-              <rect x="80" y="104" width="110" height="246" rx="14" fill="#EBDDBA"/>
-              <rect x="96" y="124" width="70" height="10" rx="5" fill="#082F49" opacity=".7"/><rect x="96" y="150" width="54" height="10" rx="5" fill="#082F49" opacity=".35"/><rect x="96" y="176" width="62" height="10" rx="5" fill="#082F49" opacity=".35"/>
-              <path d="M215 300 C260 210 305 330 355 245 S445 160 575 225" fill="none" stroke="#0E5A8A" stroke-width="7" stroke-linecap="round"/>
-              <path d="M215 330 C270 290 320 350 380 305 S470 270 575 290" fill="none" stroke="#FF6B45" stroke-width="7" stroke-linecap="round"/>
-              <rect x="215" y="120" width="170" height="14" rx="7" fill="#082F49" opacity=".75"/><rect x="215" y="146" width="110" height="10" rx="5" fill="#082F49" opacity=".3"/>
-              <rect x="500" y="250" width="210" height="130" rx="20" fill="#FF6B45"/>
-              <rect x="522" y="274" width="110" height="12" rx="6" fill="#082F49" opacity=".8"/><rect x="522" y="300" width="150" height="10" rx="5" fill="#082F49" opacity=".35"/>
-              <rect x="522" y="326" width="60" height="26" rx="13" fill="#082F49"/>
-            </svg>
-            <h3 class="display-lg text-foam absolute left-6 bottom-5 sm:left-10 sm:bottom-7 ![font-size:clamp(2.5rem,6.2vw,5rem)]">Shoreline</h3>
-            <span class="view-badge" aria-hidden="true">View</span>
+        <a href="#work" class="block rounded-[1.5rem] min-w-0">
+          <div class="cover relative aspect-[16/10] rounded-[1.5rem] sm:rounded-[1.75rem] overflow-hidden bg-deep">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop" alt="Dashboard Shoreline, grafik analitik di laptop di workspace pantai" width="800" height="500" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-deep/70 via-deep/10 to-transparent"></div>
+            <h3 class="display-lg text-white absolute left-6 bottom-5 sm:left-8 sm:bottom-6 ![font-size:clamp(2rem,4.8vw,3.6rem)]">Shoreline</h3>
+            <span class="view-badge coral" aria-hidden="true">Lihat</span>
           </div>
-          <div class="mt-5 flex flex-wrap items-start justify-between gap-4">
-            <p class="max-w-md text-lg leading-snug">A booking and analytics dashboard for a surf school, cutting weekly admin from hours to minutes.</p>
-            <ul class="tags flex flex-wrap gap-2"><li>React</li><li>Node.js</li><li>PostgreSQL</li></ul>
+          <div class="mt-3 flex flex-wrap items-start justify-between gap-3">
+            <div class="max-w-md">
+              <p class="text-[.98rem] leading-snug font-semibold">Booking dan analitik surf school, admin mingguan dari 6 jam jadi 40 menit.</p>
+              <p class="text-sm text-deep/60 mt-1">Dashboard, kalender, payout. 12 ribu booking per tahun.</p>
+            </div>
+            <ul class="tags flex flex-wrap gap-1.5"><li>React</li><li>Node.js</li><li>PostgreSQL</li></ul>
           </div>
         </a>
       </article>
-
-      <!-- Project 2: arch / beach hut -->
-      <article class="project lg:col-span-4 lg:mt-28" data-reveal="rise" style="--d:.1s">
-        <a href="https://example.com/tidepool" class="block rounded-[2rem]">
-          <div class="cover relative aspect-[3/4.1] rounded-t-[999px] rounded-b-[2rem] overflow-hidden bg-coral">
-            <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 400 546" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-              <rect width="400" height="546" fill="#FF6B45"/>
-              <circle cx="200" cy="140" r="170" fill="#FF8559"/>
-              <rect x="95" y="110" width="210" height="400" rx="36" fill="#082F49"/>
-              <rect x="105" y="120" width="190" height="380" rx="28" fill="#FBF8F1"/>
-              <rect x="170" y="130" width="60" height="10" rx="5" fill="#082F49"/>
-              <circle cx="200" cy="208" r="36" fill="#FF6B45"/>
-              <path d="M105 262 C140 244 160 280 200 262 S260 244 295 262 V290 H105Z" fill="#A9DDF5"/>
-              <rect x="125" y="310" width="150" height="34" rx="17" fill="#EBDDBA"/><rect x="125" y="354" width="150" height="34" rx="17" fill="#EBDDBA"/><rect x="125" y="398" width="150" height="34" rx="17" fill="#EBDDBA"/>
-              <rect x="140" y="322" width="70" height="10" rx="5" fill="#082F49" opacity=".6"/><rect x="140" y="366" width="52" height="10" rx="5" fill="#082F49" opacity=".6"/><rect x="140" y="410" width="80" height="10" rx="5" fill="#082F49" opacity=".6"/>
-              <rect x="125" y="448" width="150" height="34" rx="17" fill="#0E5A8A"/>
-            </svg>
-            <span class="view-badge !top-auto !bottom-5" aria-hidden="true">View</span>
+      <article class="project lg:col-span-4 lg:mt-20" data-reveal="rise" style="--d:.08s">
+        <a href="#work" class="block rounded-[1.5rem] min-w-0">
+          <div class="cover relative aspect-[3/4] rounded-t-[999px] rounded-b-[1.5rem] overflow-hidden bg-coral">
+            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80&auto=format&fit=crop" alt="Kafe Tidepool, barista menyerahkan kopi, pemesanan lewat ponsel" width="600" height="800" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-deep/50 to-transparent"></div>
+            <span class="view-badge mango !top-auto !bottom-4" aria-hidden="true">Lihat</span>
           </div>
-          <div class="relative mt-5">
-            <span class="absolute -top-14 right-2 rotate-6 bg-sand text-deep px-3 py-1 rounded-full text-sm font-semibold shadow-md">Mobile app</span>
+          <div class="relative mt-3">
+            <span class="absolute -top-9 right-2 rotate-2 bg-mango text-deep px-2.5 py-1 rounded-full text-xs font-bold shadow-sm">PWA Mobile</span>
             <h3 class="display-md">Tidepool</h3>
-            <p class="mt-2 leading-snug">A mobile-first ordering app for a beachfront café, built to stay fast on patchy beach Wi-Fi.</p>
-            <ul class="tags flex flex-wrap gap-2 mt-4"><li>Next.js</li><li>Stripe</li><li>PWA</li></ul>
+            <p class="mt-1 text-sm leading-snug text-deep/60">Pemesanan kafe pantai, offline-first, 1,2s LCP di 3G, antre 38% lebih cepat.</p>
+            <ul class="tags flex flex-wrap gap-1.5 mt-2.5"><li>Next.js</li><li>Stripe</li><li>PWA</li></ul>
           </div>
         </a>
       </article>
-
-      <!-- Project 3: sand shop with vertical title -->
       <article class="project lg:col-span-5 lg:col-start-2" data-reveal="rise">
-        <a href="https://example.com/driftwood" class="flex gap-4 sm:gap-6">
-          <h3 class="vertical display-lg shrink-0 ![font-size:clamp(2.5rem,6vw,4.75rem)] self-stretch whitespace-nowrap">Driftwood Studio</h3>
+        <a href="#work" class="flex gap-4 sm:gap-5 min-w-0">
+          <h3 class="vertical display-lg shrink-0 ![font-size:clamp(2rem,4.5vw,3.6rem)] self-stretch whitespace-nowrap">Driftwood Studio</h3>
           <div class="min-w-0 flex-1">
-            <div class="cover relative aspect-[4/5] rounded-[2rem] overflow-hidden bg-sand ring-2 ring-deep">
-              <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-                <rect width="400" height="500" fill="#EBDDBA"/>
-                <rect x="30" y="40" width="160" height="200" rx="20" fill="#FBF8F1"/><rect x="210" y="70" width="160" height="200" rx="20" fill="#FF6B45"/>
-                <rect x="30" y="270" width="160" height="200" rx="20" fill="#A9DDF5"/><rect x="210" y="300" width="160" height="170" rx="20" fill="#0E5A8A"/>
-                <g color="#0E5A8A"><svg x="55" y="70" width="110" height="110" class="text-ocean"><use href="#i-shell" style="color:#0E5A8A"/></svg></g>
-                <svg x="235" y="100" width="110" height="110"><use href="#i-starfish" style="color:#FBF8F1"/></svg>
-                <svg x="55" y="300" width="110" height="110"><use href="#i-hibiscus" style="color:#FF6B45"/></svg>
-                <svg x="235" y="325" width="110" height="110"><use href="#i-sparkle" style="color:#EBDDBA"/></svg>
-                <rect x="50" y="205" width="70" height="22" rx="11" fill="#082F49"/><rect x="230" y="235" width="70" height="22" rx="11" fill="#082F49"/>
-                <rect x="50" y="435" width="70" height="22" rx="11" fill="#082F49"/><rect x="230" y="435" width="70" height="22" rx="11" fill="#FBF8F1"/>
-              </svg>
-              <span class="view-badge" aria-hidden="true">View</span>
+            <div class="cover relative aspect-[4/5] rounded-[1.5rem] overflow-hidden bg-sand ring-1 ring-deep/08">
+              <img src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=600&q=80&auto=format&fit=crop" alt="Studio Driftwood, keramik di atas pasir hangat" width="600" height="750" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-deep/30 to-transparent opacity-60"></div>
+              <span class="view-badge turquoise" aria-hidden="true">Lihat</span>
             </div>
-            <p class="mt-5 leading-snug">A portfolio and online shop for a ceramics studio, designed around slow, tactile photography.</p>
-            <ul class="tags flex flex-wrap gap-2 mt-4"><li>Shopify</li><li>Tailwind</li><li>Figma</li></ul>
+            <p class="mt-3 text-sm leading-snug text-deep/60">Portfolio dan toko keramik, foto taktil, konversi naik 34%, Shopify dan Tailwind.</p>
+            <ul class="tags flex flex-wrap gap-1.5 mt-2.5"><li>Shopify</li><li>Tailwind</li><li>Figma</li></ul>
           </div>
         </a>
       </article>
-
-      <!-- Project 4: porthole -->
-      <article class="project lg:col-span-6 lg:col-start-7 lg:mt-24" data-reveal="rise" style="--d:.1s">
-        <a href="https://example.com/low-tide" class="block rounded-[2rem]">
-          <div class="flex flex-col sm:flex-row sm:items-center gap-8">
-            <div class="cover relative w-[min(100%,20rem)] aspect-square rounded-full overflow-hidden border-[12px] border-deep shrink-0 shadow-[0_30px_50px_-25px_rgba(8,47,73,.6)]">
-              <svg class="art absolute inset-0 w-full h-full" viewBox="0 0 400 400" aria-hidden="true">
-                <rect width="400" height="400" fill="#A9DDF5"/>
-                <circle cx="200" cy="120" r="46" fill="#FF6B45"/>
-                <path d="M0 230 C50 200 100 260 150 230 S250 200 300 230 S380 260 400 240 V400 H0Z" fill="#6EC1E8"/>
-                <path d="M0 270 C60 240 110 300 170 270 S280 240 340 270 S390 290 400 280 V400 H0Z" fill="#1E7FB8"/>
-                <path d="M0 320 C70 295 120 345 190 320 S300 295 360 320 L400 330 V400 H0Z" fill="#082F49"/>
-                <path d="M30 360 C90 330 140 372 200 346 S310 330 370 352" fill="none" stroke="#FBF8F1" stroke-width="5" stroke-linecap="round"/>
-                <circle cx="200" cy="346" r="8" fill="#FF6B45" stroke="#FBF8F1" stroke-width="3"/>
-                <circle cx="200" cy="200" r="190" fill="none" stroke="#FBF8F1" stroke-width="4" opacity=".6"/>
-              </svg>
-              <span class="view-badge !right-4 !top-4 !w-20 !h-20" aria-hidden="true">View</span>
+      <article class="project lg:col-span-6 lg:col-start-7 lg:mt-16" data-reveal="rise" style="--d:.08s">
+        <a href="#work" class="block rounded-[1.5rem] min-w-0">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-6">
+            <div class="cover relative w-[min(100%,17rem)] aspect-square rounded-full overflow-hidden border-[8px] border-deep shrink-0 shadow-[0_20px_36px_-18px_rgba(8,47,73,.45)] bg-mist">
+              <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?w=600&q=80&auto=format&fit=crop" alt="Low Tide, laut tenang saat senja, view porthole" width="600" height="600" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+              <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 400" aria-hidden="true"><circle cx="200" cy="200" r="180" fill="none" stroke="#FBF8F1" stroke-width="2.5" opacity=".5"/></svg>
+              <span class="view-badge mango !right-3 !top-3 !w-14 !h-14" aria-hidden="true">Lihat</span>
             </div>
-            <div>
-              <h3 class="display-lg ![font-size:clamp(2.5rem,5vw,4.25rem)]">Low Tide</h3>
-              <p class="mt-3 leading-snug max-w-xs">A tide and weather companion that keeps working offline, because the signal always drops at the best spots.</p>
-              <ul class="tags flex flex-wrap gap-2 mt-4"><li>TypeScript</li><li>PWA</li><li>Open-Meteo</li></ul>
+            <div class="min-w-0">
+              <h3 class="display-lg ![font-size:clamp(2rem,4vw,3.2rem)]">Low Tide</h3>
+              <p class="mt-1.5 text-sm leading-snug max-w-xs text-deep/60">Teman pasang dan cuaca, jalan offline, notifikasi pasang, API Open-Meteo. Sinyal selalu hilang di spot terbaik, aplikasi tetap jalan.</p>
+              <ul class="tags flex flex-wrap gap-1.5 mt-2.5"><li>TypeScript</li><li>PWA</li><li>Open-Meteo</li></ul>
             </div>
           </div>
         </a>
@@ -425,113 +329,141 @@
     </div>
   </div>
 </section>
-
-<!-- ===================== JOURNEY ===================== -->
-<section id="journey" class="relative bg-mist overflow-hidden pt-40 sm:pt-48 pb-44 sm:pb-52">
-  <div class="wave-box top-0 h-20 sm:h-28 scale-y-[-1] z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="12" data-wl="720" data-base="70" data-speed="42"></svg></div>
-
+<!-- ===================== JOURNEY · descent deep ===================== -->
+<section id="journey" class="mist-bg relative overflow-hidden pt-24 sm:pt-32 pb-28 sm:pb-36">
+  <div class="wave-box top-0 h-14 sm:h-18 scale-y-[-1] z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="10" data-wl="720" data-base="70" data-speed="42"></svg></div>
+  <div class="absolute right-[8%] top-[22%] hidden lg:block opacity-20" aria-hidden="true"><svg class="w-12 h-8 text-ocean"><use href="#i-fish"/></svg></div>
+  <div class="absolute left-[6%] bottom-[18%] hidden lg:block opacity-15" aria-hidden="true"><svg class="w-8 h-10 text-turquoise"><use href="#i-jelly"/></svg></div>
   <div class="relative z-10 mx-auto max-w-5xl px-5 sm:px-8">
-    <h2 class="display-lg" data-reveal="wipe">How I got here.</h2>
-    <p class="mt-4 max-w-md text-lg" data-reveal="rise">A few stops along the shoreline.</p>
-
-    <div class="journey-wrap mt-20" id="journeyWrap">
+    <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest px-3 py-1.5 rounded-full bg-white border border-deep/10">PERJALANAN · MENYELAM</span>
+    <h2 class="display-lg mt-3" data-reveal="wipe">Bagaimana saya sampai di sini.</h2>
+    <p class="mt-2 max-w-md text-[1.02rem] leading-relaxed text-deep/60" data-reveal="rise">Empat pemberhentian, dari tag blink pertama sampai rilis saat pasang tinggi. Tiap tahun makin dalam.</p>
+    <div class="journey-wrap mt-14" id="journeyWrap">
       <svg id="boat" class="boat" viewBox="0 0 40 40" aria-hidden="true">
         <path d="M20 4 L20 26 L6 26Z" fill="#FF6B45"/><path d="M22 10 L22 26 L34 26Z" fill="#FBF8F1" stroke="#082F49" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 29 H36 L31 36 H9Z" fill="#082F49"/>
       </svg>
       <ol>
         <li class="j-item">
-          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-sun"/></svg></span>
+          <span class="j-dot coral"><svg class="w-5 h-5" aria-hidden="true"><use href="#i-sun"/></svg></span>
           <div class="j-card" data-reveal="rise">
-            <p class="j-year">20XX – Now</p>
-            <h3 class="display-md mt-3">[Current role]</h3>
-            <p class="mt-1 font-semibold text-ocean">[Company or studio]</p>
-            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">Shipping product features, mentoring teammates and sweating the small details that make interfaces feel calm.</p>
+            <p class="j-year">2024 – Sekarang</p>
+            <h3 class="display-md mt-1.5">Senior Frontend Developer</h3>
+            <p class="mt-1 text-xs font-bold tracking-widest text-ocean/60"><span translate="no">Pytom Studio</span> · Remote, Jakarta</p>
+            <p class="mt-2 max-w-sm leading-relaxed text-sm md:inline-block">Pimpin frontend produk, mentor 4 developer, kejar detail yang bikin antarmuka terasa tenang. 100 Lighthouse, a11y, CWV hijau.</p>
           </div>
         </li>
         <li class="j-item">
-          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-shell"/></svg></span>
+          <span class="j-dot turquoise"><svg class="w-5 h-5" aria-hidden="true"><use href="#i-fish"/></svg></span>
           <div class="j-card" data-reveal="rise">
-            <p class="j-year">20XX – 20XX</p>
-            <h3 class="display-md mt-3">[Previous role]</h3>
-            <p class="mt-1 font-semibold text-ocean">[Company or studio]</p>
-            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">Built and maintained client websites end to end, from design handoff to deployment.</p>
+            <p class="j-year">2022 – 2024</p>
+            <h3 class="display-md mt-1.5">Frontend Developer</h3>
+            <p class="mt-1 text-xs font-bold tracking-widest text-ocean/60">Kopi Laut Digital · Jakarta</p>
+            <p class="mt-2 max-w-sm leading-relaxed text-sm md:inline-block">Bangun website klien dari Figma sampai deploy. Shoreline dan Tidepool lahir di sini.</p>
           </div>
         </li>
         <li class="j-item">
-          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-starfish"/></svg></span>
+          <span class="j-dot mango"><svg class="w-5 h-5" aria-hidden="true"><use href="#i-shell"/></svg></span>
           <div class="j-card" data-reveal="rise">
-            <p class="j-year">20XX</p>
-            <h3 class="display-md mt-3">[Degree, bootcamp or certification]</h3>
-            <p class="mt-1 font-semibold text-ocean">[School or program]</p>
-            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">Where the fundamentals clicked: semantics, the box model and why accessibility is never optional.</p>
+            <p class="j-year">2020 – 2022</p>
+            <h3 class="display-md mt-1.5">S1 Informatika</h3>
+            <p class="mt-1 text-xs font-bold tracking-widest text-ocean/60">Universitas Indonesia · Depok</p>
+            <p class="mt-2 max-w-sm leading-relaxed text-sm md:inline-block">Fundamental klik, semantik, box model, dan kenapa aksesibilitas tidak pernah opsional.</p>
           </div>
         </li>
         <li class="j-item">
-          <span class="j-dot"><svg class="w-6 h-6" aria-hidden="true"><use href="#i-hibiscus"/></svg></span>
+          <span class="j-dot coral"><svg class="w-5 h-5" aria-hidden="true"><use href="#i-anchor"/></svg></span>
           <div class="j-card" data-reveal="rise">
-            <p class="j-year">20XX</p>
-            <h3 class="display-md mt-3">The first website</h3>
-            <p class="mt-3 max-w-sm leading-relaxed md:inline-block">A single page with a blinking title and one very confused image. I was hooked.</p>
+            <p class="j-year">2019</p>
+            <h3 class="display-md mt-1.5">Website pertama</h3>
+            <p class="mt-2 max-w-sm leading-relaxed text-sm md:inline-block">Satu halaman, satu judul berkedip, satu gambar bingung. Sejak itu saya ketagihan.</p>
           </div>
         </li>
       </ol>
     </div>
   </div>
-
-  <div class="wave-box bottom-0 h-20 sm:h-28 z-[1]" aria-hidden="true"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#082F49" data-amp="12" data-wl="720" data-base="70" data-speed="44"></svg></div>
+  <div class="wave-box bottom-0 h-14 sm:h-18 z-[1]" aria-hidden="true"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#082F49" data-amp="10" data-wl="720" data-base="70" data-speed="44"></svg></div>
 </section>
-
-<!-- ===================== CONTACT ===================== -->
-<section id="contact" class="contact-bg relative overflow-hidden text-foam pt-28 sm:pt-36">
+<!-- ===================== CONTACT · deep sea premium ===================== -->
+<section id="contact" class="contact-bg relative overflow-hidden text-white pt-20 sm:pt-28">
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <span class="bubble" style="left:10%;--s:12px;--d:22s;--delay:-2s"></span>
+    <span class="bubble turquoise" style="left:22%;--s:18px;--d:26s;--delay:-7s"></span>
+    <span class="bubble coral" style="left:36%;--s:10px;--d:20s;--delay:-4s"></span>
+    <span class="bubble mango" style="left:52%;--s:20px;--d:28s;--delay:-9s"></span>
+    <span class="bubble" style="left:68%;--s:14px;--d:24s;--delay:-5s"></span>
+    <span class="bubble turquoise" style="left:82%;--s:26px;--d:30s;--delay:-11s"></span>
+    <span class="bubble" style="left:90%;--s:9px;--d:18s;--delay:-3s"></span>
+    <svg class="absolute left-[10%] top-[18%] w-11 h-7 text-white/50 fish-swim" aria-hidden="true"><use href="#i-fish"/></svg>
+    <svg class="absolute right-[12%] top-[22%] w-9 h-11 text-white/40" aria-hidden="true"><use href="#i-jelly"/></svg>
+    <svg class="absolute left-[7%] top-[50%] w-7 h-11 text-white/30" aria-hidden="true"><use href="#i-jelly"/></svg>
+    <svg class="absolute right-[9%] top-[54%] w-11 h-7 text-white/45 fish-swim" style="animation-delay:-1.5s" aria-hidden="true"><use href="#i-fish"/></svg>
+    <svg class="absolute left-[18%] bottom-[28%] w-8 h-5 text-mango/40 fish-swim" style="animation-delay:-2s" aria-hidden="true"><use href="#i-fish"/></svg>
+  </div>
   <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8">
-    <h2 class="display-xl contact-title" data-reveal="wipe">Let&rsquo;s make<br>waves together.</h2>
-    <p class="mt-8 max-w-md text-lg text-foam/90" data-reveal="rise">Got an idea, a rough sketch or a site that needs rescuing? Tell me about it. I usually reply within two working days.</p>
-
-    <div class="mt-10 flex flex-wrap items-center gap-3" data-reveal="rise" style="--d:.1s">
-      <a href="mailto:hello@example.com" class="btn btn-coral !text-lg sm:!text-xl !px-7 !py-4"><i class="bi bi-envelope-fill" aria-hidden="true"></i>hello@example.com</a>
-      <button type="button" id="copyEmail" data-email="hello@example.com" class="btn btn-line"><i class="bi bi-clipboard" aria-hidden="true"></i><span>Copy email</span></button>
+    <span class="inline-flex items-center gap-1.5 text-xs font-bold tracking-widest px-3 py-1.5 rounded-full bg-white/10 border border-white/15 text-white">KONTAK · LAUT DALAM</span>
+    <h2 class="display-xl contact-title mt-3" data-reveal="wipe">Mari bikin<br>ombak bareng.</h2>
+    <p class="mt-5 max-w-md text-[1.02rem] leading-relaxed text-white/80" data-reveal="rise">Punya ide, sketsa kasar, atau website yang butuh diselamatkan? Cerita saja. Saya balas dalam dua hari kerja.</p>
+    <div class="mt-7 flex flex-wrap items-center gap-3" data-reveal="rise" style="--d:.08s">
+      <a href="mailto:hello@pytom.dev" class="btn btn-coral !text-[1.02rem] sm:!text-lg !px-6 !py-3.5">hello@pytom.dev <i class="bi bi-envelope-fill" aria-hidden="true"></i></a>
+      <button type="button" id="copyEmail" data-email="hello@pytom.dev" class="btn btn-line"><i class="bi bi-clipboard" aria-hidden="true"></i><span>Salin email</span></button>
     </div>
-    <ul class="mt-4 flex flex-wrap gap-3" aria-label="Social profiles" data-reveal="rise" style="--d:.2s">
-      <li><a class="btn btn-line" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i>GitHub</a></li>
-      <li><a class="btn btn-line" href="https://www.linkedin.com/in/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
-      <li><a class="btn btn-line" href="https://www.instagram.com/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram" aria-hidden="true"></i>Instagram</a></li>
-      <li><a class="btn btn-line" href="https://x.com/your-username" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x" aria-hidden="true"></i>X</a></li>
+    <ul class="mt-3 flex flex-wrap gap-2.5" aria-label="Profil sosial" data-reveal="rise" style="--d:.16s">
+      <li><a class="btn btn-line" href="https://github.com/pytomdev" target="_blank" rel="noopener noreferrer"><i class="bi bi-github" aria-hidden="true"></i>GitHub</a></li>
+      <li><a class="btn btn-line" href="https://www.linkedin.com/in/pytomdev" target="_blank" rel="noopener noreferrer"><i class="bi bi-linkedin" aria-hidden="true"></i>LinkedIn</a></li>
+      <li><a class="btn btn-line" href="https://www.instagram.com/pytomdev" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram" aria-hidden="true"></i>Instagram</a></li>
+      <li><a class="btn btn-line" href="https://x.com/pytomdev" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x" aria-hidden="true"></i>X</a></li>
     </ul>
   </div>
-
-  <!-- Sunset scene -->
-  <div class="relative mt-16 h-[340px] sm:h-[440px]" aria-hidden="true">
-    <div class="sun-set absolute left-1/2 -translate-x-1/2 bottom-[56px] w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full"></div>
-    <svg class="float absolute left-[8%] top-[20%] w-10 h-10 text-sand/80"><use href="#i-sparkle"/></svg>
-    <svg class="float-slow absolute right-[12%] top-[8%] w-8 h-8 text-foam/80"><use href="#i-sparkle"/></svg>
-    <div class="wave-box bottom-0" style="height:56%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#0B4468" data-amp="12" data-wl="720" data-base="26" data-speed="44"></svg></div>
-    <div class="wave-box bottom-0" style="height:42%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#0E5A8A" data-amp="11" data-wl="480" data-base="26" data-phase="1" data-speed="36"></svg></div>
-    <div class="wave-box bottom-0" style="height:30%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#FBF8F1" data-amp="9" data-wl="720" data-base="28" data-phase="2" data-speed="30"></svg></div>
-    <div class="wave-box bottom-0" style="height:22%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#EBDDBA" data-amp="8" data-wl="360" data-base="26" data-phase="3" data-speed="38"></svg></div>
+  <div class="relative mt-10 h-[300px] sm:h-[360px]" aria-hidden="true">
+    <div class="sun-set absolute left-1/2 -translate-x-1/2 bottom-[48px] w-[220px] h-[220px] sm:w-[300px] sm:h-[300px] rounded-full"></div>
+    <svg class="absolute left-[14%] top-[18%] w-8 h-5 text-white/40 fish-swim" aria-hidden="true"><use href="#i-fish"/></svg>
+    <div class="wave-box bottom-0" style="height:52%"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#0B4468" data-amp="10" data-wl="720" data-base="26" data-speed="44"></svg></div>
+    <div class="wave-box bottom-0" style="height:34%"><svg class="wave rev" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#061E2F" data-amp="7" data-wl="720" data-base="26" data-phase="2" data-speed="30"></svg></div>
   </div>
 </section>
-
 </main>
-
-<!-- ===================== FOOTER ===================== -->
-<footer class="grain relative bg-sand text-deep">
-  <div class="footer-bar relative z-10 mx-auto max-w-7xl px-5 sm:px-8 pb-10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-6">
-    <a href="#hero" class="flex items-center gap-3 font-display font-bold text-xl tracking-tight">
-      <span class="grid place-items-center w-10 h-10 rounded-full bg-coral text-deep font-extrabold text-base">PD</span>
-      PytomDev, web developer
-    </a>
-    <p class="text-sm text-center max-w-xs sm:max-w-none">&copy; <span id="year">2026</span> PytomDev. Built by hand with HTML, Tailwind and a lot of sunshine.</p>
-    <div class="flex items-center gap-3" aria-hidden="true">
-      <svg class="w-7 h-7 text-coral" aria-hidden="true"><use href="#i-starfish"/></svg>
-      <svg class="w-7 h-7 text-ocean" aria-hidden="true"><use href="#i-shell"/></svg>
-      <svg class="w-7 h-7 text-coral" aria-hidden="true"><use href="#i-hibiscus"/></svg>
-      <a href="#hero" class="ml-2 grid place-items-center w-11 h-11 rounded-full bg-deep text-foam transition-transform hover:-translate-y-1 focus-visible:outline-[3px] focus-visible:outline-coral focus-visible:outline-offset-2" aria-label="Back to top"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+<footer class="footer-bg relative">
+  <div class="wave-box top-0 h-10 sm:h-12 z-[1]" aria-hidden="true"><svg class="wave" viewBox="0 0 2880 160" preserveAspectRatio="none" data-fill="#061E2F" data-amp="6" data-wl="720" data-base="70" data-speed="32"></svg></div>
+  <div class="relative z-10 mx-auto max-w-7xl px-5 sm:px-8 pt-12 pb-10">
+    <div class="grid md:grid-cols-12 gap-8 items-start">
+      <div class="md:col-span-5">
+        <a href="#hero" class="inline-flex items-center gap-3 font-display font-bold text-lg tracking-tight text-white">
+          <span class="grid place-items-center w-9 h-9 rounded-full bg-coral text-white font-bold text-sm">PD</span>
+          <span translate="no">PytomDev</span>
+        </a>
+        <p class="mt-3 text-sm leading-relaxed text-white/60 max-w-xs">Frontend developer di Jakarta, bikin website cepat dan aksesibel dari sketsa di pasir sampai deploy di laut dalam.</p>
+        <p class="mt-2 text-xs text-white/35">&copy; <span id="year">2026</span> <span translate="no">PytomDev</span>. Dibuat manual pakai HTML, Tailwind, dan banyak matahari.</p>
+      </div>
+      <div class="md:col-span-3">
+        <p class="text-xs font-bold tracking-widest text-white/40">NAVIGASI</p>
+        <ul class="footer-links mt-3 space-y-2 text-sm">
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#skills">Keahlian</a></li>
+          <li><a href="#work">Karya</a></li>
+          <li><a href="#journey">Perjalanan</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="md:col-span-4">
+        <p class="text-xs font-bold tracking-widest text-white/40">TERHUBUNG</p>
+        <ul class="footer-links mt-3 space-y-2 text-sm">
+          <li><a href="mailto:hello@pytom.dev">hello@pytom.dev</a></li>
+          <li><a href="https://github.com/pytomdev" target="_blank" rel="noopener noreferrer">GitHub · @pytomdev</a></li>
+          <li><a href="https://www.linkedin.com/in/pytomdev" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="https://x.com/pytomdev" target="_blank" rel="noopener noreferrer">X (Twitter)</a></li>
+        </ul>
+        <div class="mt-5 flex items-center gap-2 deep-icons">
+          <svg class="w-5 h-5 text-coral" aria-hidden="true"><use href="#i-starfish"/></svg>
+          <svg class="w-5 h-5 text-turquoise" aria-hidden="true"><use href="#i-fish"/></svg>
+          <svg class="w-5 h-5 text-mango" aria-hidden="true"><use href="#i-shell"/></svg>
+          <svg class="w-5 h-5 text-white/60" aria-hidden="true"><use href="#i-jelly"/></svg>
+          <a href="#hero" class="ml-auto grid place-items-center w-9 h-9 rounded-full bg-white text-deep hover:bg-mango transition-colors focus-visible:outline-[3px] focus-visible:outline-white focus-visible:outline-offset-2" aria-label="Kembali ke atas"><i class="bi bi-arrow-up" aria-hidden="true"></i></a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
-
-<div id="toast" role="status" aria-live="polite">Email copied to clipboard</div>
-
+<div id="toast" role="status" aria-live="polite">Email tersalin ke clipboard</div>
 <script defer src="js/script.js"></script>
 </body>
 </html>

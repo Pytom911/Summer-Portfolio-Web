@@ -5,18 +5,24 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const yearEl = $("#year");
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  if (yearEl) {
+    try {
+      yearEl.textContent = new Intl.DateTimeFormat("en", { year: "numeric" }).format(new Date());
+    } catch {
+      yearEl.textContent = String(new Date().getFullYear());
+    }
+  }
 
   $$("svg.wave").forEach((svg) => {
-    const W = 2880;
-    const H = svg.viewBox.baseVal.height || 160;
-    const amp = +svg.dataset.amp || 12;
-    const wl = +svg.dataset.wl || 720;
-    const ph = +svg.dataset.phase || 0;
-    const base = +svg.dataset.base || 30;
+    const vbH = svg.viewBox && svg.viewBox.baseVal ? svg.viewBox.baseVal.height : 0;
+    const H = vbH || 160;
+    const amp = Number(svg.dataset.amp) || 12;
+    const wl = Number(svg.dataset.wl) || 720;
+    const ph = Number(svg.dataset.phase) || 0;
+    const base = Number(svg.dataset.base) || 30;
     let d = `M0 ${H} L0 ${(base + amp * Math.sin(ph)).toFixed(1)}`;
-    for (let x = 16; x <= W; x += 16) d += ` L${x} ${(base + amp * Math.sin((x / wl) * 2 * Math.PI + ph)).toFixed(1)}`;
-    d += ` L${W} ${H} Z`;
+    for (let x = 16; x <= 2880; x += 16) d += ` L${x} ${(base + amp * Math.sin((x / wl) * 2 * Math.PI + ph)).toFixed(1)}`;
+    d += ` L2880 ${H} Z`;
     const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
     p.setAttribute("d", d);
     p.setAttribute("fill", svg.dataset.fill || "#fff");
@@ -27,6 +33,7 @@
   let idx = 0;
   $$(".split").forEach((el) => {
     const text = el.textContent.trim();
+    if (!text) return;
     el.textContent = "";
     el.setAttribute("aria-hidden", "true");
     text.split(" ").forEach((word, w, arr) => {
@@ -35,7 +42,7 @@
       [...word].forEach((ch) => {
         const s = document.createElement("span");
         s.textContent = ch;
-        s.style.setProperty("--i", idx++);
+        s.style.setProperty("--i", String(idx++));
         wEl.appendChild(s);
       });
       el.appendChild(wEl);
@@ -44,11 +51,16 @@
   });
 
   $$("[data-marquee]").forEach((t) => {
+    if (t.children.length && t.innerHTML.indexOf(t.children[0].outerHTML) !== -1) {
+      const already = t.innerHTML.length > t.children[0].outerHTML.length * 1.5;
+      if (already) return;
+    }
     t.innerHTML += t.innerHTML;
   });
 
   const btn = $("#menuBtn");
   const menu = $("#mobileMenu");
+  const supportsInert = "inert" in HTMLElement.prototype;
   const setMenu = (open) => {
     if (!menu || !btn) return;
     menu.classList.toggle("open", open);
@@ -62,11 +74,13 @@
       if (firstLink) firstLink.focus();
       menu.setAttribute("aria-hidden", "false");
       const main = document.getElementById("main");
-      if (main) main.setAttribute("inert", "");
+      if (main && supportsInert) main.setAttribute("inert", "");
+      else if (main) main.setAttribute("aria-hidden", "true");
     } else {
       menu.setAttribute("aria-hidden", "true");
       const main = document.getElementById("main");
-      if (main) main.removeAttribute("inert");
+      if (main && supportsInert) main.removeAttribute("inert");
+      else if (main) main.removeAttribute("aria-hidden");
     }
   };
   if (btn && menu) {
@@ -79,8 +93,9 @@
       }
     });
     const mq = matchMedia("(min-width:768px)");
-    if (mq.addEventListener) mq.addEventListener("change", (e) => { if (e.matches) setMenu(false); });
-    else mq.addListener((e) => { if (e.matches) setMenu(false); });
+    const onMq = (e) => { if (e.matches) setMenu(false); };
+    if (mq.addEventListener) mq.addEventListener("change", onMq);
+    else mq.addListener(onMq);
   }
 
   const links = $$("[data-nav]");
@@ -108,16 +123,6 @@
     revealEls.forEach((el) => io.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add("is-in"));
-  }
-
-  const hero = $("#hero");
-  if (hero && !reduce && matchMedia("(pointer:fine)").matches) {
-    hero.addEventListener("pointermove", (e) => {
-      const r = hero.getBoundingClientRect();
-      hero.style.setProperty("--mx", ((e.clientX - r.left) / r.width - 0.5).toFixed(3));
-      hero.style.setProperty("--my", ((e.clientY - r.top) / r.height - 0.5).toFixed(3));
-    }, { passive: true });
-    hero.addEventListener("pointerleave", () => { hero.style.setProperty("--mx", 0); hero.style.setProperty("--my", 0); });
   }
 
   const jw = $("#journeyWrap");
@@ -151,23 +156,23 @@
   const copyBtn = $("#copyEmail");
   if (copyBtn) {
     copyBtn.addEventListener("click", async () => {
-      const email = copyBtn.dataset.email || "hello@example.com";
+      const email = copyBtn.dataset.email || "hello@pytom.dev";
       try {
         await navigator.clipboard.writeText(email);
-        showToast("Email copied to clipboard");
-      } catch (err) {
+        showToast("Email tersalin ke clipboard");
+      } catch {
         const ta = document.createElement("textarea");
         ta.value = email; ta.style.position = "fixed"; ta.style.opacity = "0";
         document.body.appendChild(ta); ta.select();
-        try { document.execCommand("copy"); showToast("Email copied to clipboard"); }
-        catch (e) { showToast(email); }
+        try { document.execCommand("copy"); showToast("Email tersalin ke clipboard"); }
+        catch { showToast(email); }
         ta.remove();
       }
       const icon = $("i", copyBtn);
       const label = $("span", copyBtn);
       if (icon) icon.className = "bi bi-clipboard-check";
-      if (label) label.textContent = "Copied";
-      setTimeout(() => { if (icon) icon.className = "bi bi-clipboard"; if (label) label.textContent = "Copy email"; }, 2000);
+      if (label) label.textContent = "Tersalin";
+      setTimeout(() => { if (icon) icon.className = "bi bi-clipboard"; if (label) label.textContent = "Salin email"; }, 2000);
     });
   }
 })();
